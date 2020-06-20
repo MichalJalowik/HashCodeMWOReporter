@@ -22,7 +22,6 @@ public class CSVDataRaportPrinter implements DataRaportPrinter {
                 }
                 raportToPrintInStringFormat.append("\n");
             }
-            System.out.println(raportToPrintInStringFormat);        //only for tests
             
             csvFileWriter.write(raportToPrintInStringFormat.toString());
             csvFileWriter.close();
