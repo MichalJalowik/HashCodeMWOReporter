@@ -23,7 +23,8 @@ public class DataImporter {
             Path path = Paths.get(filePath);
             Path fileName = path.getFileName();
             String employeeName = fileName.toString().replace('_', ' ');
-
+            int position = employeeName.indexOf(".");
+            employeeName = employeeName.substring(0, position);
             Workbook workbook = openWorkbook(filePath);
 
             for (Sheet sheet : workbook) {
