@@ -121,7 +121,7 @@ public class DataImporter {
         for (File file : listOfFiles) {
             try {
                 BasicFileAttributes attributes = Files.readAttributes(file.toPath(), BasicFileAttributes.class);
-                System.out.println(file.getPath());
+                
                 if (attributes.isDirectory()) {
                     scanFolder(file.getPath());
                 } else {
