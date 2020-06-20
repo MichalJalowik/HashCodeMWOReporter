@@ -1,5 +1,5 @@
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Raport1 implements Raport {
@@ -28,7 +28,7 @@ public class Raport1 implements Raport {
 			i++;
 		}
 				
-		// Docelowo posortować
+		Arrays.sort(raport, (a, b) -> Integer.compare(Integer.valueOf(b[1]), Integer.valueOf(a[1])));
 		this.raport = raport;
 		return raport;		
 	}
@@ -47,11 +47,11 @@ public class Raport1 implements Raport {
 
 	@Override
 	public String[][] getRaport() {
-		return raport;
+		return this.raport;
 	}
 
 	@Override
 	public String getName() {
-		return name;
+		return this.name;
 	}
 }
