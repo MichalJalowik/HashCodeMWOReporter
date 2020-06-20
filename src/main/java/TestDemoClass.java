@@ -4,7 +4,7 @@ public class TestDemoClass {
 
     public static void main(String[] args) throws IOException {
         
-        TestRaport raport = new TestRaport();
+        Raport raport = new Raport();
         ConsoleDataRaportPrinter consolePrinter = new ConsoleDataRaportPrinter();
 //        CSVDataRaportPrinter csvDataRaportPrinter = new CSVDataRaportPrinter();
         
