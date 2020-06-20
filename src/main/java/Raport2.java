@@ -11,7 +11,6 @@ public class Raport2 implements Raport {
 		int rows = projects.size();
 		String[][] rawRaport = new String[rows][2];
 		
-		
 		int i = 0;
 		for (Project project : projects) {
 			rawRaport[i][0] = project.getName();
