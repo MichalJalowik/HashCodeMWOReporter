@@ -16,7 +16,7 @@ public class DataImporter {
     private ArrayList<String> paths = new ArrayList<String>();
     private HashSet<Project> projects = new HashSet<>();
     private HashSet<Employee> employees = new HashSet<>();
- 
+
     private HashSet<Project> getTasks(ArrayList<String> files) {
         for (String filePath : files) {
 
@@ -55,17 +55,14 @@ public class DataImporter {
 
                         Task task = new Task();
                         try {
-                        	task.setDescription(row.getCell(1).getStringCellValue());
-                        	task.setDuration(row.getCell(2).getNumericCellValue());
-                        	//task.setDate(row.getCell(3).getLocalDateTimeCellValue().toLocalDate());
-                        	employee.tasks.add(task);
+                            task.setDescription(row.getCell(1).getStringCellValue());
+                            task.setDuration(row.getCell(2).getNumericCellValue());
+                            task.setDate(row.getCell(0).getLocalDateTimeCellValue().toLocalDate());
+                            employee.tasks.add(task);
                             project.addTask(task);
                         } catch (Exception e) {
-                        	e.printStackTrace();
+                            e.printStackTrace();
                         }
-                        
-                        
-                        
                     }
                 }
             }
