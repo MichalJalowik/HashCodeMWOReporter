@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 public class Raport {
 
@@ -14,4 +15,13 @@ public class Raport {
 
        
 
+=======
+import java.util.Set;
+
+public interface Raport {
+	
+	public String[][] generateRaport(Set<Project> projects);
+	public String[][] getRaport();
+	public String getName();
+>>>>>>> d6d3142ec72ea76210d744b304b089a42b9d6915
 }
