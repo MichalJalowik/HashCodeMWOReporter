@@ -29,10 +29,12 @@ public class Raport2 implements Raport {
 		return raport;
 	}
 	
+	@Override
 	public String[][] getRaport() {
 		return raport;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
