@@ -26,7 +26,7 @@ public class MainJarAndCommandLineTEST {
             String report2 = line.getOptionValue("printer");
 
             if(line.hasOption("path")) {
-                //System.out.println("running......path" + " " + path);
+                System.out.println("running......path" + " " + path);
                 //Set<Project> set = importer.importDataFromFiles(path);
             }
             if(line.hasOption("report1")) {
