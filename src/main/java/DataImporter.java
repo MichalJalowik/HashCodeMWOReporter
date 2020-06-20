@@ -55,11 +55,18 @@ public class DataImporter {
 
                         Task task = new Task();
                         try {
-                            task.setDescription(row.getCell(1).getStringCellValue());
-                            task.setDuration(row.getCell(2).getNumericCellValue());
-                            task.setDate(row.getCell(0).getLocalDateTimeCellValue().toLocalDate());
-                            employee.tasks.add(task);
-                            project.addTask(task);
+
+                            boolean haveDate = !cellIsNull(row, 0);
+                            boolean haveDescription = !cellIsNull(row, 1);
+                            boolean haveDuration = !cellIsNull(row, 2);
+
+                            if (haveDate && haveDescription && haveDuration) {
+                                task.setDate(row.getCell(0).getLocalDateTimeCellValue().toLocalDate());
+                                task.setDescription(row.getCell(1).getStringCellValue());
+                                task.setDuration(row.getCell(2).getNumericCellValue());
+                                employee.tasks.add(task);
+                                project.addTask(task);
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -69,6 +76,13 @@ public class DataImporter {
         }
 
         return projects;
+    }
+
+    private boolean cellIsNull(Row row, int cellNumber) {
+        if (row.getCell(cellNumber) == null)
+            return true;
+        else
+            return false;
     }
 
     private Employee getEmployee(String employeeName) {
