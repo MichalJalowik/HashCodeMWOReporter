@@ -2,7 +2,7 @@
 public class ConsoleDataRaportPrinter implements DataRaportPrinter {
 
     @Override
-    public void printRaport(TestRaport raport) {
+    public void printRaport(Raport raport) {
         
         System.out.println("Raport: " + raport.getName());
         for (String[] record : raport.getRaport()) {

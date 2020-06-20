@@ -8,7 +8,7 @@ import java.util.List;
 public class CSVDataRaportPrinter implements DataRaportPrinter {
 
     @Override
-    public void printRaport(TestRaport raport) throws IOException {
+    public void printRaport(Raport raport) throws IOException {
         // TODO Auto-generated method stub
 
         List<String[]> listFromArray = Arrays.asList(raport.getRaport());

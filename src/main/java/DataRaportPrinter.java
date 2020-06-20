@@ -2,5 +2,5 @@ import java.io.IOException;
 
 public interface DataRaportPrinter {
 
-    public void printRaport(TestRaport raport) throws IOException;
+    public void printRaport(Raport raport) throws IOException;
 }

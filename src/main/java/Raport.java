@@ -1,5 +1,5 @@
 
-public class TestRaport {
+public class Raport {
 
     String raport[][] = { { "Jan Kowalski", "12" }, { "Piotr Nowak", "20" }, };
     String name;
