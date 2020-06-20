@@ -24,6 +24,7 @@ public class CSVDataRaportPrinter implements DataRaportPrinter {
             }
             csvFileWriter.write(raportToPrintInStringFormat.toString());
             csvFileWriter.close();
+            System.out.println("Raport zapisany do pliku " + fileName);
             
         } catch (Exception e) {
             e.printStackTrace();

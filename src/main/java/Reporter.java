@@ -17,32 +17,46 @@ public class Reporter {
 				+ "1. Raport godzin przepracowanych przez poszczególnych pracowników\n "
 				+ "2. Raport godzin poświęconych na każdy projekt\n " + "3. Wyjście z pogramu");
 		int i = scan.nextInt();
+		Raport raport = null;
 		switch (i) {
 		case 1:
-			Raport raport1 = new Raport1();
-			raport1.generateRaport(set);
-			DataRaportPrinter print1 = new ConsoleDataRaportPrinter();
-			try {
-				print1.printRaport(raport1);
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+			raport = new Raport1();
+			
 			break;
 		case 2:
-			Raport2 raport2 = new Raport2();
-			raport2.generateRaport(set);
-			DataRaportPrinter print2 = new ConsoleDataRaportPrinter();
-			try {
-				print2.printRaport(raport2);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			raport = new Raport2();
 			break;
 		case 3:
 			break;
 		default:
 			System.out.println("Wybrano niepoprawny numer raportu!");
+		}
+		raport.generateRaport(set);
+		
+		System.out.println("Wybierz sposób prezentacji raportu:\n "
+				+ "1. Wyświetlenie na konsoli\n "
+				+ "2. Eksport do pliku csv\n " 
+				+ "3. Wyjście z pogramu");
+		i = scan.nextInt();
+		DataRaportPrinter printer = null;
+		switch (i) {
+		case 1:
+			printer = new ConsoleDataRaportPrinter();
+			break;
+		case 2:
+			printer = new CSVDataRaportPrinter();
+			break;
+		case 3:
+			break;
+		default:
+			System.out.println("Wybrano niepoprawny numer!");
+		}
+		
+		try {
+			printer.printRaport(raport);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 	}
 }
