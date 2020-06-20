@@ -1,8 +1,9 @@
+
 public class ConsoleDataRaportPrinter implements DataRaportPrinter {
 
     @Override
     public void printRaport(Raport raport) {
-
+        
         System.out.println("Raport: " + raport.getName());
         for (String[] record : raport.getRaport()) {
             for (String value : record) {
@@ -12,4 +13,6 @@ public class ConsoleDataRaportPrinter implements DataRaportPrinter {
             System.out.println();
         }
     }
+
 }
+
