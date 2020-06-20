@@ -44,10 +44,12 @@ public class Raport1 implements Raport {
 		return employees;
 	}
 
+	@Override
 	public String[][] getRaport() {
 		return raport;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
