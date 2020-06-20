@@ -25,7 +25,7 @@ public class Raport1 implements Raport {
 				workedHours += task.getDuration();
 			}
 			
-			raport[i][1] = String.valueOf(workedHours);
+			raport[i + 1][1] = String.valueOf(workedHours);
 			i++;
 		}
 				
