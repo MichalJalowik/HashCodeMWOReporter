@@ -9,18 +9,22 @@ public class MainJarAndCommandLineTEST {
     public static void main (String[] args) throws ParseException{
 
         Options options = new Options();
-        options.addOption("runFunctionOne", false, "runs given function");
+        options.addOption("runFunctionOne", false, "runs given functionOne");
+        options.addOption("runFunctionTwo", false, "runs given functionTwo");
 
         CommandLineParser parser = new DefaultParser();
         try {
             // parse the command line arguments
             CommandLine line = parser.parse( options, args );
             if(line.hasOption("runFunctionOne")) {
-                System.out.println("running......");
+                System.out.println("running......One");
             }
-            else {
-                System.out.println("no function to run");
+            if(line.hasOption("runFunctionTwo")) {
+                System.out.println("running......Two");
             }
+//            else {
+//                System.out.println("no function to run");
+//            }
         }
         catch( ParseException exp ) {
             // oops, something went wrong
