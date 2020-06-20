@@ -1,8 +1,8 @@
 
 public class Raport {
 
-    String raport[][] = { { "Jan Kowalski", "12" }, { "Piotr Nowak", "20" }, };
-    String name = "John Doe";
+    String raport[][] = { { "Pracownik", "Roboczogodziny" }, { "Jan Kowalski", "12" }, { "Piotr Nowak", "20" }, };
+    String name = "Raport nr 1";
 
     public String[][] getRaport() {
         return raport;
