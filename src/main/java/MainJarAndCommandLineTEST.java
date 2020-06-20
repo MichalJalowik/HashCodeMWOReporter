@@ -9,25 +9,31 @@ public class MainJarAndCommandLineTEST {
     public static void main (String[] args) throws ParseException{
 
         Options options = new Options();
-        options.addOption("runFunctionOne", false, "runs given functionOne");
-        options.addOption("runFunctionTwo", false, "runs given functionTwo");
+        options.addOption("path", true, "put path of location");
+        options.addOption("report", true, "put report needed");
+        options.addOption("printer", true, "put printer type");
 
         CommandLineParser parser = new DefaultParser();
         try {
-            // parse the command line arguments
             CommandLine line = parser.parse( options, args );
-            if(line.hasOption("runFunctionOne")) {
-                System.out.println("running......One");
+            String path = line.getOptionValue("path");
+            String report = line.getOptionValue("report");
+            String printer = line.getOptionValue("printer");
+
+            if(line.hasOption("path")) {
+                System.out.println("running......path" + " " + path);
             }
-            if(line.hasOption("runFunctionTwo")) {
-                System.out.println("running......Two");
+            if(line.hasOption("report")) {
+                System.out.println("running......report" + " " + report);
             }
-//            else {
-//                System.out.println("no function to run");
-//            }
+            if(line.hasOption("printer")) {
+                System.out.println("running......printer" + " " + printer);
+            }
+            else {
+                System.out.println("no function to run");
+            }
         }
         catch( ParseException exp ) {
-            // oops, something went wrong
             System.err.println( "Parsing failed.  Reason: " + exp.getMessage() );
         }
 
