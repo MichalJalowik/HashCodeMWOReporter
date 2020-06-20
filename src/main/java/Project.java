@@ -5,6 +5,18 @@ public class Project {
 	
 	private String name;
 	public Set<Employee> employees = new HashSet<Employee>();
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
+	}
+	public Set<Task> getTasks() {
+		return tasks;
+	}
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
+	}
 	public Set<Task> tasks = new HashSet<Task>();
 	
 	public String getName() {

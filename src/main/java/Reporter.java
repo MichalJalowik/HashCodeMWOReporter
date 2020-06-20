@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Reporter {
 
@@ -17,14 +19,25 @@ public class Reporter {
 		int i = scan.nextInt();
 		switch (i) {
 		case 1:
-			Raport1 raport1 = new Raport1(set);
-			DataRaportPrint print1 = new DataRaportPrinter();
-			print1.printaRaport(raport1);
+			Raport raport1 = new Raport1();
+			raport1.generateRaport(set);
+			DataRaportPrinter print1 = new ConsoleDataRaportPrinter();
+			try {
+				print1.printRaport(raport1);
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 			break;
 		case 2:
-			Raport2 raport2 = new Raport2(set);
-			DataRaportPrint print2 = new DataRaportPrinter();
-			print2.printaRaport(raport2);
+			Raport2 raport2 = new Raport2();
+			raport2.generateRaport(set);
+			DataRaportPrinter print2 = new ConsoleDataRaportPrinter();
+			try {
+				print2.printRaport(raport2);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			break;
 		case 3:
 			break;
@@ -32,5 +45,4 @@ public class Reporter {
 			System.out.println("Wybrano niepoprawny numer raportu!");
 		}
 	}
-
 }
