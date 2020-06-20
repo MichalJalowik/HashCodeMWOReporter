@@ -10,7 +10,7 @@ public class CSVDataRaportPrinter implements DataRaportPrinter {
 
         String raportDate = LocalDate.now().toString();
         String raportType = raport.getClass().getName();
-        String fileName = raportType + raportDate + ".csv";
+        String fileName = raportType + "_" + raportDate + ".csv";
         
         try (PrintWriter csvFileWriter = new PrintWriter(new File(fileName))) {
             StringBuilder raportToPrintInStringFormat = new StringBuilder();
@@ -22,12 +22,10 @@ public class CSVDataRaportPrinter implements DataRaportPrinter {
                 }
                 raportToPrintInStringFormat.append("\n");
             }
-            
             csvFileWriter.write(raportToPrintInStringFormat.toString());
             csvFileWriter.close();
             
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
