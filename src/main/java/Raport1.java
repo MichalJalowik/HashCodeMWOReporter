@@ -4,31 +4,39 @@ import java.util.Set;
 
 public class Raport1 implements Raport {
 	private String [][] raport;
-	private String name = "Raport 1: iloÅ›Ä‡ godzin dla poszczegÃ³lnych pracownikÃ³w.";
+	private String name = "Raport 1: iloœæ godzin dla poszczególnych pracowników.";
 
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
 		Set<Employee> employees = parseEmployees(projects);
+		int rows = employees.size();
 		
-		String[][] raport = new String[employees.size() + 1][2];
-		raport[0][0] = "Pracownik";
-		raport[0][1] = "Przepracowane godziny";
-		
-		
+		String[][] rawRaport = new String[rows][2];
+				
 		int i = 0;
 		for (Employee employee : employees) {
-			raport[i + 1][0] = employee.getName();
+			rawRaport[i][0] = employee.getName();
 			int workedHours = 0;
 			
 			for (Task task : employee.getTasks()) {
 				workedHours += task.getDuration();
 			}
 			
-			raport[i + 1][1] = String.valueOf(workedHours);
+			rawRaport[i][1] = String.valueOf(workedHours);
 			i++;
 		}
 				
-		Arrays.sort(raport, (a, b) -> Integer.compare(Integer.valueOf(b[1]), Integer.valueOf(a[1])));
+		Arrays.sort(rawRaport, (a, b) -> Integer.compare(Integer.valueOf(b[1]), Integer.valueOf(a[1])));
+		
+		String[][] raport = new String[rows + 1][2];
+		raport[0][0] = "Pracownik";
+		raport[0][1] = "Przepracowane godziny";
+		
+		for (int j = 1; i < rows + 1; j++) {
+			raport[j][0] = rawRaport[j - 1][0];
+			raport[j][1] = rawRaport[j - 1][1];
+		}
+				
 		this.raport = raport;
 		return raport;		
 	}
