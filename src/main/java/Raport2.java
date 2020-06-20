@@ -3,7 +3,7 @@ import java.util.Set;
 
 public class Raport2 implements Raport {
 	private String [][] raport;
-	private String name = "Raport 2: iloœæ godzin dla poszczególnych projektów.";
+	private String name = "Raport 2: iloÅ›Ä‡ godzin dla poszczegÃ³lnych projektÃ³w.";
 
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
@@ -30,7 +30,7 @@ public class Raport2 implements Raport {
 		raport[0][0] = "Projekt";
 		raport[0][1] = "Przepracowane godziny";
 		
-		for (int j = 1; i < rows + 1; j++) {
+		for (int j = 1; j < rows + 1; j++) {
 			raport[j][0] = rawRaport[j - 1][0];
 			raport[j][1] = rawRaport[j - 1][1];
 		}
