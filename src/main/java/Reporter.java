@@ -6,31 +6,26 @@ public class Reporter {
 
 	public static void main(String[] args) {
 
-		System.out.println("WITAJ W SYSTEMIE DO RAPORTOWANIA PRACY\n");
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Proszę podaj ścieżkę do plików, dla których chcesz wygenerować raport:");
-		String path = scan.nextLine();
 		DataImporter importer = new DataImporter();
-		Set <Project> set = importer.importDataFromFiles(path);
-		
-		Menu menu1 = new Menu("WYBÓR RAPORTU", new String[]{
-				"Raport godzin przepracowanych przez poszczególnych pracowników", 
-				"Raport godzin poświęconych na każdy projekt",
-				"Raport czasowy pracownik/projekt"});
-        
-		Menu menu2 = new Menu("WYBÓR PREZENTACJI RAPORTU", new String[]{
-				 "Wyświetlenie na konsoli", 
-				 "Eksport do pliku CSV",
-				 "Eksport do pliku XLSX",
-				 "Eksport do pliku PDF"});
-		
-		
 		Raport raport = null;
 		DataRaportPrinter printer = null;
-		
+
+		System.out.println("WITAJ W SYSTEMIE DO RAPORTOWANIA PRACY\n");
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Podaj ścieżkę do plików, dla których chcesz wygenerować raport:");
+		String path = scan.nextLine();
+		Set<Project> set = importer.importDataFromFiles(path);
+
+		Menu menu1 = new Menu("WYBÓR RAPORTU",
+				new String[] { "Raport godzin przepracowanych przez poszczególnych pracowników",
+						"Raport godzin poświęconych na każdy projekt", "Raport czasowy pracownik/projekt" });
+
+		Menu menu2 = new Menu("WYBÓR PREZENTACJI RAPORTU", new String[] { "Wyświetlenie na konsoli",
+				"Eksport do pliku CSV", "Eksport do pliku XLSX", "Eksport do pliku PDF" });
+
 		int selection1 = -1;
 		int selection2 = -1;
-		
+
 		while (selection1 != 0) {
 			selection1 = menu1.makeSelection();
 			switch (selection1) {
@@ -45,8 +40,7 @@ public class Reporter {
 				break;
 			}
 			raport.generateRaport(set);
-			
-			
+
 			if (selection1 != 0) {
 				selection2 = -1;
 				while (selection2 != 0) {
@@ -65,12 +59,11 @@ public class Reporter {
 						printer = new PDFDataRaportPrinter();
 						break;
 					}
-					
+
 					if (selection2 != 0) {
 						try {
 							printer.printRaport(raport);
-						} catch (IOException e)
-						{
+						} catch (IOException e) {
 							e.printStackTrace();
 						}
 					}
