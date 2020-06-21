@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -5,9 +6,15 @@ import java.util.Set;
 public class Raport1 implements Raport {
 	private String [][] raport;
 	private String name = "Raport 1: ilość godzin dla poszczególnych pracowników.";
-
+	private LocalDate minDate;
+	private LocalDate maxDate;
+	
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
+		
+		this.minDate = LocalDate.MAX;
+		this.maxDate = LocalDate.MIN;
+		
 		Set<Employee> employees = parseEmployees(projects);
 		int rows = employees.size();
 		
@@ -20,6 +27,14 @@ public class Raport1 implements Raport {
 			
 			for (Task task : employee.getTasks()) {
 				workedHours += task.getDuration();
+				
+				if (task.getDate().isBefore(this.minDate)) {
+					this.minDate = task.getDate();
+				}
+				
+				if (task.getDate().isAfter(this.maxDate)) {
+					this.maxDate = task.getDate();
+				}	
 			}
 			
 			rawRaport[i][1] = String.valueOf(workedHours);
@@ -62,4 +77,14 @@ public class Raport1 implements Raport {
 	public String getName() {
 		return this.name;
 	}
+
+	@Override
+	public LocalDate getMinDate() {
+		return this.minDate;
+	}
+
+	@Override
+	public LocalDate getMaxDate() {
+		return this.maxDate;
+	}	
 }
