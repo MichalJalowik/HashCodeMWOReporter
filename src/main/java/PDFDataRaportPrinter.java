@@ -8,6 +8,7 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class PDFDataRaportPrinter implements DataRaportPrinter {
@@ -22,15 +23,15 @@ public class PDFDataRaportPrinter implements DataRaportPrinter {
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(fileName));
 			document.open();
+			PdfPTable table = new PdfPTable(2);
+			table.setWidthPercentage(90f);
+			
 			for (String[] record : raport.getRaport()) {
 				for (String value : record) {
-					document.add(new Paragraph(value));
-
-					document.add(Chunk.NEWLINE);
+					table.addCell(value);
 				}
-				document.add(Chunk.NEWLINE);
-
 			}
+			document.add(table);
 			document.close();
 			System.out.println("Raport zapisany do pliku " + fileName);
 
