@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class Raport2 implements Raport {
 	private String [][] raport;
-	private String name = "Raport 2: ilość godzin dla poszczególnych projektów.";
+	private String name = "Raport 2: ilosc godzin dla poszczegolnych projektow.";
 	private LocalDate minDate;
 	private LocalDate maxDate;
 
