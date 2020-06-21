@@ -31,23 +31,26 @@ public class Raport3 implements Raport {
 			int workedHours = 0;
 			
 			int j = 1;
-			for (Project project : employee.getProjects()) {
+			for (Project project : projects) {
+				if (i == 0) {
+					raport[i][j] = "Godziny dla " + project.getName();
+				}
 				
-				raport[0][j] = "Godziny dla " + project.getName();
 				int projectWorkedHours = 0;
 				
-				for (Task task : project.getTasks()) {
-					
-					if (employee.getTasks().contains(task)) {
-						workedHours += task.getDuration();
-						projectWorkedHours += task.getDuration();
-						
-						if (task.getDate().isBefore(this.minDate)) {
-							this.minDate = task.getDate();
-						}
-						
-						if (task.getDate().isAfter(this.maxDate)) {
-							this.maxDate = task.getDate();
+				if (employee.getProjects().contains(project)) {
+					for (Task task : project.getTasks()) {
+						if (employee.getTasks().contains(task)) {
+							workedHours += task.getDuration();
+							projectWorkedHours += task.getDuration();
+							
+							if (task.getDate().isBefore(this.minDate)) {
+								this.minDate = task.getDate();
+							}
+							
+							if (task.getDate().isAfter(this.maxDate)) {
+								this.maxDate = task.getDate();
+							}
 						}
 					}
 				}
