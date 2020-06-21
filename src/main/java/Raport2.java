@@ -11,6 +11,9 @@ public class Raport2 implements Raport {
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
 		
+		this.minDate = LocalDate.MAX;
+		this.maxDate = LocalDate.MIN;
+		
 		int rows = projects.size();
 		String[][] rawRaport = new String[rows][2];
 		
@@ -18,9 +21,17 @@ public class Raport2 implements Raport {
 		for (Project project : projects) {
 			rawRaport[i][0] = project.getName();
 			int workedHours = 0;
-			
+	
 			for (Task task : project.getTasks()) {
 				workedHours += task.getDuration();
+				
+				if (task.getDate().isBefore(this.minDate)) {
+					this.minDate = task.getDate();
+				}
+				
+				if (task.getDate().isAfter(this.maxDate)) {
+					this.maxDate = task.getDate();
+				}		
 			}
 			
 			rawRaport[i][1] = String.valueOf(workedHours);
