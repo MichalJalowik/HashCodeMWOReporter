@@ -15,7 +15,9 @@ public class Reporter {
 
 		System.out.println("Wybierz rodzaj raportu, który chcesz wygenerwać:\n "
 				+ "1. Raport godzin przepracowanych przez poszczególnych pracowników\n "
-				+ "2. Raport godzin poświęconych na każdy projekt\n " + "3. Wyjście z pogramu");
+				+ "2. Raport godzin poświęconych na każdy projekt\n " 
+				+ "3. Raport czasowy pracownik/projekt"
+				+ "4. Wyjście z pogramu");
 		int i = scan.nextInt();
 		Raport raport = null;
 		switch (i) {
@@ -27,6 +29,9 @@ public class Reporter {
 			raport = new Raport2();
 			break;
 		case 3:
+			raport = new Raport3();
+			break;
+		case 4:
 			break;
 		default:
 			System.out.println("Wybrano niepoprawny numer raportu!");
