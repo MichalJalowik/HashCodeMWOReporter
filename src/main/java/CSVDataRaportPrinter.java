@@ -15,6 +15,13 @@ public class CSVDataRaportPrinter implements DataRaportPrinter {
         try (PrintWriter csvFileWriter = new PrintWriter(new File(fileName))) {
             StringBuilder raportToPrintInStringFormat = new StringBuilder();
             
+            String raportName = "Raport: " + raport.getName();
+            String periodOfData = "Dane za okres: " + raport.getMinDate() + " - " + raport.getMaxDate();
+            raportToPrintInStringFormat.append(raportName);
+            raportToPrintInStringFormat.append("\n");
+            raportToPrintInStringFormat.append(periodOfData);
+            raportToPrintInStringFormat.append("\n");
+
             for (String[] record : raport.getRaport()) {
                 for (String value : record) {
                     raportToPrintInStringFormat.append(value);
