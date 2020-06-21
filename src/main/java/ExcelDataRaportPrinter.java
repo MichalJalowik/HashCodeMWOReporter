@@ -20,15 +20,14 @@ public class ExcelDataRaportPrinter implements DataRaportPrinter {
         String periodOfData = "Dane za okres: " + raport.getMinDate() + " - " + raport.getMaxDate();
 
         int rowCount = -1;
-        
+
         Row raportNameRow = sheet.createRow(++rowCount);
         Cell raportNameCell = raportNameRow.createCell(0);
         raportNameCell.setCellValue(raportName);
-        
+
         Row periodOfDataRow = sheet.createRow(++rowCount);
         Cell periodOfDataCell = periodOfDataRow.createCell(0);
         periodOfDataCell.setCellValue(periodOfData);
-        
 
         for (String[] record : raportToPrint) {
             Row row = sheet.createRow(++rowCount);
@@ -45,14 +44,17 @@ public class ExcelDataRaportPrinter implements DataRaportPrinter {
                 }
             }
         }
-        
+
         String raportDate = LocalDate.now().toString();
         String raportType = raport.getClass().getName();
         String fileName = raportType + "_" + raportDate + ".xlsx";
-        
+
         try (FileOutputStream outputStream = new FileOutputStream(fileName)) {
             workbook.write(outputStream);
             System.out.println("Raport zapisany do pliku " + fileName);
+        } catch (IOException e) {
+            System.err.print("Error: nie można zapisać pliku!\n"
+                    + "Sprawdz czy plik " + fileName + " nie jest otwarty w innym programie.");
         }
     }
 
