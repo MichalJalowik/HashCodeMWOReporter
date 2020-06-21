@@ -11,10 +11,17 @@ public class CSVDataRaportPrinter implements DataRaportPrinter {
         String raportDate = LocalDate.now().toString();
         String raportType = raport.getClass().getName();
         String fileName = raportType + "_" + raportDate + ".csv";
-        
+
         try (PrintWriter csvFileWriter = new PrintWriter(new File(fileName))) {
             StringBuilder raportToPrintInStringFormat = new StringBuilder();
-            
+
+            String raportName = "Raport: " + raport.getName();
+            String periodOfData = "Dane za okres: " + raport.getMinDate() + " - " + raport.getMaxDate();
+            raportToPrintInStringFormat.append(raportName);
+            raportToPrintInStringFormat.append("\n");
+            raportToPrintInStringFormat.append(periodOfData);
+            raportToPrintInStringFormat.append("\n");
+
             for (String[] record : raport.getRaport()) {
                 for (String value : record) {
                     raportToPrintInStringFormat.append(value);
@@ -25,9 +32,10 @@ public class CSVDataRaportPrinter implements DataRaportPrinter {
             csvFileWriter.write(raportToPrintInStringFormat.toString());
             csvFileWriter.close();
             System.out.println("Raport zapisany do pliku " + fileName);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        } catch (IOException e) {
+            System.err.print("Error: nie można zapisać pliku!\n" + "Sprawdz czy plik " + fileName
+                    + " nie jest otwarty w innym programie.");
         }
     }
 }

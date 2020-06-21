@@ -36,8 +36,9 @@ public class Reporter {
 		System.out.println("Wybierz sposób prezentacji raportu:\n "
 				+ "1. Wyświetlenie na konsoli\n "
 				+ "2. Eksport do pliku csv\n "
-				+ "3. Eksport do pliku xls\n " 
-				+ "4. Wyjście z pogramu");
+				+ "3. Eksport do pliku xls\n "
+				+ "4. Eksport do pliku pdf\n " 
+				+ "5. Wyjście z pogramu");
 		i = scan.nextInt();
 		DataRaportPrinter printer = null;
 		switch (i) {
@@ -51,6 +52,9 @@ public class Reporter {
 			printer = new ExcelDataRaportPrinter();
 			break;
 		case 4:
+			printer = new PDFDataRaportPrinter();
+			break;
+		case 5:
 			break;
 		default:
 			System.out.println("Wybrano niepoprawny numer!");
