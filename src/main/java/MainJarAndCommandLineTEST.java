@@ -13,10 +13,11 @@ public class MainJarAndCommandLineTEST {
         options.addOption("path", true, "put path of location");
         options.addOption("report1", false, "put report needed");
         options.addOption("report2", false, "put printer type");
+        options.addOption("report3", false, "put printer type");
         options.addOption("console", false, "printing result on console");
         options.addOption("CSV", false, "printing result as CSV into project directory");
         options.addOption("XLS", false, "printing result as XLS into project directory");
-        options.addOption("PDF", false, "printing result as XLS into project directory");
+        options.addOption("PDF", false, "printing result as PDF into project directory");
         options.addOption("info", false, "operations manual");
         CommandLineParser parser = new DefaultParser();
         try {
@@ -36,7 +37,9 @@ public class MainJarAndCommandLineTEST {
                 raport.generateRaport(set);
             }
             if(line.hasOption("report3")) {
-                System.out.println("running......");
+                Set<Project> set = importer.importDataFromFiles(path);
+                raport = new Raport3();
+                raport.generateRaport(set);
             }
             if(line.hasOption("report4")) {
                 System.out.println("running......");
