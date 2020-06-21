@@ -16,8 +16,19 @@ public class ExcelDataRaportPrinter implements DataRaportPrinter {
         XSSFSheet sheet = workbook.createSheet("Raport");
 
         String[][] raportToPrint = raport.getRaport();
+        String raportName = "Raport: " + raport.getName();
+        String periodOfData = "Dane za okres: " + raport.getMinDate() + " - " + raport.getMaxDate();
 
         int rowCount = -1;
+        
+        Row raportNameRow = sheet.createRow(++rowCount);
+        Cell raportNameCell = raportNameRow.createCell(0);
+        raportNameCell.setCellValue(raportName);
+        
+        Row periodOfDataRow = sheet.createRow(++rowCount);
+        Cell periodOfDataCell = periodOfDataRow.createCell(0);
+        periodOfDataCell.setCellValue(periodOfData);
+        
 
         for (String[] record : raportToPrint) {
             Row row = sheet.createRow(++rowCount);
@@ -41,6 +52,7 @@ public class ExcelDataRaportPrinter implements DataRaportPrinter {
         
         try (FileOutputStream outputStream = new FileOutputStream(fileName)) {
             workbook.write(outputStream);
+            System.out.println("Raport zapisany do pliku " + fileName);
         }
     }
 
