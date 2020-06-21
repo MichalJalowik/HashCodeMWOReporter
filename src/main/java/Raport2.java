@@ -1,9 +1,12 @@
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Set;
 
 public class Raport2 implements Raport {
 	private String [][] raport;
 	private String name = "Raport 2: ilość godzin dla poszczególnych projektów.";
+	private LocalDate minDate;
+	private LocalDate maxDate;
 
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
@@ -48,5 +51,14 @@ public class Raport2 implements Raport {
 	public String getName() {
 		return this.name;
 	}
+	
+	@Override
+	public LocalDate getMinDate() {
+		return this.minDate;
+	}
 
+	@Override
+	public LocalDate getMaxDate() {
+		return this.maxDate;
+	}	
 }
