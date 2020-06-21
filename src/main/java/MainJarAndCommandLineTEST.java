@@ -12,26 +12,26 @@ public class MainJarAndCommandLineTEST {
     public static void main (String[] args) throws ParseException{
 
         DataImporter importer = new DataImporter();
+        DataRaportPrinter printer = null;
 
         Options options = new Options();
         options.addOption("path", true, "put path of location");
         options.addOption("report1", false, "put report needed");
         options.addOption("report2", false, "put printer type");
+        options.addOption("console", false, "printing result on console");
+        options.addOption("CSV", false, "printing result as CSV into project directory");
+        options.addOption("XLS", false, "printing result as XLS into project directory");
+        options.addOption("info", false, "operations manual");
 
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine line = parser.parse( options, args );
             String path = line.getOptionValue("path");
-            String report1 = line.getOptionValue("report");
-            String report2 = line.getOptionValue("printer");
 
             if(line.hasOption("path")) {
                 System.out.println("running......path" + " " + path);
-                //Set<Project> set = importer.importDataFromFiles(path);
             }
             if(line.hasOption("report1")) {
-                //System.out.println("running......report1" + " " + report1);
-
                 Set<Project> set = importer.importDataFromFiles(path);
                 Raport raport1 = new Raport1();
                 raport1.generateRaport(set);
@@ -45,8 +45,6 @@ public class MainJarAndCommandLineTEST {
 
             }
             if(line.hasOption("report2")) {
-                //System.out.println("running......report2" + " " + report2);
-
                 Set<Project> set = importer.importDataFromFiles(path);
                 Raport2 raport2 = new Raport2();
                 raport2.generateRaport(set);
@@ -57,14 +55,44 @@ public class MainJarAndCommandLineTEST {
                     e.printStackTrace();
                 }
             }
-//            else {
-//                System.out.println("no function to run");
-//            }
+            if(line.hasOption("report3")) {
+                System.out.println("running......");
+            }
+            if(line.hasOption("report4")) {
+                System.out.println("running......");
+            }
+            if(line.hasOption("report5")) {
+                System.out.println("running......");
+            }
+            if(line.hasOption("Console")) {
+                System.out.println("running......on console below");
+                printer = new ConsoleDataRaportPrinter();
+            }
+            if(line.hasOption("CSV")) {
+                System.out.println("saving......as CSV into project directory");
+                printer = new CSVDataRaportPrinter();
+            }
+            if(line.hasOption("XLS")) {
+                System.out.println("saving......as XLS into project directory");
+                printer = new ExcelDataRaportPrinter();
+            }
+            if(line.hasOption("info")) {
+                System.out.println("operations manual.....");
+            }
+            if(line.hasOption("failures")) {
+                System.out.println("running......");
+            }
+            if(line.hasOption("range_from")) {
+                System.out.println("running......");
+            }
+            if(line.hasOption("range_to")) {
+                System.out.println("running......");
+            }
+
+
         }
         catch( ParseException exp ) {
             System.err.println( "Parsing failed.  Reason: " + exp.getMessage() );
         }
-
     }
-
 }
