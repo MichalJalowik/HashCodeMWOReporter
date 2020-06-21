@@ -6,6 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -61,12 +64,26 @@ public class DataImporter {
                             boolean haveDescription = !cellIsNull(row, 1);
                             boolean haveDuration = !cellIsNull(row, 2);
 
+                            CheckImportValues checkImportValues = new CheckImportValues(filePath, projectName, row.getRowNum() + 1);
+
+                            if(haveDate){
+                                checkImportValues.isCorrectDate( row, 0);
+                            }
+
+                            if(haveDuration){
+                                checkImportValues.isCorrectNumberValue(row.getCell(2).toString());
+                            }
+
                             if (haveDate && haveDescription && haveDuration) {
                                 task.setDate(row.getCell(0).getLocalDateTimeCellValue().toLocalDate());
                                 task.setDescription(row.getCell(1).getStringCellValue());
                                 task.setDuration(row.getCell(2).getNumericCellValue());
                                 employee.tasks.add(task);
+                                employee.projects.add(project);
                                 project.addTask(task);
+                            }
+                            else{
+                                checkImportValues.errorInfo(haveDate ,haveDescription, haveDuration);
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
