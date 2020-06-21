@@ -16,7 +16,7 @@ public class Reporter {
 		System.out.println("Wybierz rodzaj raportu, który chcesz wygenerwać:\n "
 				+ "1. Raport godzin przepracowanych przez poszczególnych pracowników\n "
 				+ "2. Raport godzin poświęconych na każdy projekt\n " 
-				+ "3. Raport czasowy pracownik/projekt"
+				+ "3. Raport czasowy pracownik/projekt\n "
 				+ "4. Wyjście z pogramu");
 		int i = scan.nextInt();
 		Raport raport = null;
