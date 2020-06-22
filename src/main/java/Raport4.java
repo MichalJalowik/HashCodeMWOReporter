@@ -17,34 +17,50 @@ public class Raport4 implements Raport {
 		this.minDate = LocalDate.MAX;
 		this.maxDate = LocalDate.MIN;
 		
-		int rows = 0;
+//		int rows = 0;
+//		
+//		for (Project project : projects) {
+//			rows += project.getTasks().size();
+//		}
+//		
+//		String[][] rawRaport = new String[rows][3];
+//		
+//		int i = 0;
+//		for (Project project : projects) {
+//			for (Task task : project.getTasks()) {
+//				
+//				rawRaport[i][0] = task.getDescription();
+//				rawRaport[i][1] = project.getName();
+//				rawRaport[i][2] = String.valueOf(task.getDuration());
+//				
+//				if (task.getDate().isBefore(this.minDate)) {
+//					this.minDate = task.getDate();
+//				}
+//				
+//				if (task.getDate().isAfter(this.maxDate)) {
+//					this.maxDate = task.getDate();
+//				}
+//				
+//				i++;
+//			}
+//		}
 		
-		for (Project project : projects) {
-			rows += project.getTasks().size();
-		}
-		
+		Map<Map<String, String>, Double> taskMap = generateTaskMap(projects);
+		int rows = taskMap.size();
 		String[][] rawRaport = new String[rows][3];
 		
 		int i = 0;
-		for (Project project : projects) {
-			for (Task task : project.getTasks()) {
-				rawRaport[i][0] = task.getDescription();
-				rawRaport[i][1] = project.getName();
-				rawRaport[i][2] = String.valueOf(task.getDuration());
-				
-				if (task.getDate().isBefore(this.minDate)) {
-					this.minDate = task.getDate();
-				}
-				
-				if (task.getDate().isAfter(this.maxDate)) {
-					this.maxDate = task.getDate();
-				}
-				
-				i++;
+		for (Map.Entry<Map<String, String>, Double> outerEntry : taskMap.entrySet()) {
+			Map<String, String> map = outerEntry.getKey();
+			for (Map.Entry<String, String> innerEntry : map.entrySet()) {
+				rawRaport[i][0] = innerEntry.getKey();
+				rawRaport[i][1] = innerEntry.getValue();
 			}
+			rawRaport[i][2] = String.valueOf(outerEntry.getValue());
+			i++;
 		}
 		
-		Arrays.sort(rawRaport, (a, b) -> Integer.compare(Integer.valueOf(b[2]), Integer.valueOf(a[2])));
+		Arrays.sort(rawRaport, (a, b) -> Double.compare(Double.valueOf(b[2]), Double.valueOf(a[2])));
 		
 		String[][] raport = new String[printedValues + 1][3];
 		raport[0][0] = "Zadanie";
@@ -61,15 +77,36 @@ public class Raport4 implements Raport {
 		return raport;
 	}
 	
-//	private Map<Map<String, String>, Integer> generateTaskMap(Set<Project> projects) {
-//		Map<Map<String, String>, Integer> taskMap = new HashMap<>();
-//		
-//		for (Project project : projects) {
-//			
-//		}
-//		
-//		return taskMap;
-//	}
+	private Map<Map<String, String>, Double> generateTaskMap(Set<Project> projects) {
+	Map<Map<String, String>, Double> taskMap = new HashMap<>();
+	
+	for (Project project : projects) {
+		for (Task task : project.getTasks()) {
+			
+			// refoprmat
+			String taskDescription = task.getDescription();
+			String projectName = project.getName();
+			
+			Map<String, String> map = Map.of(taskDescription, projectName);
+			
+			if (!taskMap.containsKey(map)) {
+				taskMap.put(map, task.getDuration());
+			} else {
+				taskMap.put(map, taskMap.get(map) + task.getDuration());
+			}
+			
+			if (task.getDate().isBefore(this.minDate)) {
+				this.minDate = task.getDate();
+			}
+			
+			if (task.getDate().isAfter(this.maxDate)) {
+				this.maxDate = task.getDate();
+			}
+		}
+	}
+	
+	return taskMap;
+}
 
 	@Override
 	public String[][] getRaport() {
@@ -90,5 +127,4 @@ public class Raport4 implements Raport {
 	public LocalDate getMaxDate() {
 		return this.maxDate;
 	}
-
 }
