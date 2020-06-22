@@ -14,7 +14,7 @@ public class Reporter {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Podaj ścieżkę do plików, dla których chcesz wygenerować raport:");
 		String path = scan.nextLine();
-		Set<Project> set = importer.importDataFromFiles(path);
+		Set<Project> projects = importer.importDataFromFiles(path);
 
 		Menu menu1 = new Menu("WYBÓR RAPORTU",
 				new String[] { "Raport godzin przepracowanych przez poszczególnych pracowników",
@@ -39,7 +39,7 @@ public class Reporter {
 				raport = new Raport3();
 				break;
 			}
-			raport.generateRaport(set);
+			raport.generateRaport(projects);
 
 			if (selection1 != 0) {
 				selection2 = -1;
