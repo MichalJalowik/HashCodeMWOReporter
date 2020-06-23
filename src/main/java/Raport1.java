@@ -12,8 +12,10 @@ public class Raport1 implements Raport {
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
 		
-		this.minDate = LocalDate.MAX;
-		this.maxDate = LocalDate.MIN;
+		if (!projects.isEmpty()) {
+			this.minDate = LocalDate.MAX;
+			this.maxDate = LocalDate.MIN;
+		}
 		
 		Set<Employee> employees = parseEmployees(projects);
 		int rows = employees.size();
@@ -51,7 +53,7 @@ public class Raport1 implements Raport {
 			raport[j][0] = rawRaport[j - 1][0];
 			raport[j][1] = rawRaport[j - 1][1];
 		}
-				
+
 		this.raport = raport;
 		return raport;		
 	}

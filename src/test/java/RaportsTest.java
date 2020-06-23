@@ -29,5 +29,16 @@ public class RaportsTest {
 		expectedEmptyRaport[0][1] = "Przepracowane godziny";
 		Assert.assertEquals(raport1.getRaport(),expectedEmptyRaport);
 	}
+	
+	@Test
+	public void testDatesInRaport1WithEmptyProjects() {
+		raport1.generateRaport(projects);
+		Assert.assertNull(raport1.getMinDate());
+		Assert.assertNull(raport1.getMaxDate());
+	}
+	
+	// zrobić testy dla pustych raportów 2-5
+	
+	// zrobić testy dat dla pustych 1-5
 
 }
