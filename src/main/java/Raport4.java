@@ -14,10 +14,18 @@ public class Raport4 implements Raport {
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
 		
-		if (!projects.isEmpty()) {
-			this.minDate = LocalDate.MAX;
-			this.maxDate = LocalDate.MIN;
+		if (projects.isEmpty() || projects == null) {
+			String[][] raport = new String[1][3];
+			raport[0][0] = "Zadanie";
+			raport[0][1] = "Projekt";
+			raport[0][2] = "Przepracowane godziny";
+
+			this.raport = raport;
+			return raport;
 		}
+		
+		this.minDate = LocalDate.MAX;
+		this.maxDate = LocalDate.MIN;
 		
 		Map<Map<String, String>, Double> taskMap = generateTaskMap(projects);
 		int rows = taskMap.size();
