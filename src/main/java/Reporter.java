@@ -18,7 +18,8 @@ public class Reporter {
 
 		Menu menu1 = new Menu("WYBÓR RAPORTU",
 				new String[] { "Raport godzin przepracowanych przez poszczególnych pracowników",
-						"Raport godzin poświęconych na każdy projekt", "Raport czasowy pracownik/projekt" });
+						"Raport godzin poświęconych na każdy projekt", "Raport czasowy pracownik/projekt",
+						"Raport TOP10 najbardziej czasochłonnych zadań"});
 
 		Menu menu2 = new Menu("WYBÓR PREZENTACJI RAPORTU", new String[] { "Wyświetlenie na konsoli",
 				"Eksport do pliku CSV", "Eksport do pliku XLSX", "Eksport do pliku PDF" });
@@ -37,6 +38,9 @@ public class Reporter {
 				break;
 			case 3:
 				raport = new Raport3();
+				break;
+			case 4:
+				raport = new Raport4();
 				break;
 			}
 			raport.generateRaport(projects);
