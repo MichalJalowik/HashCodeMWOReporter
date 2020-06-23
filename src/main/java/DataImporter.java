@@ -28,68 +28,78 @@ public class DataImporter {
             String employeeName = fileName.toString().replace('_', ' ');
             int position = employeeName.indexOf(".");
             employeeName = employeeName.substring(0, position);
-            Workbook workbook = openWorkbook(filePath);
-
-            for (Sheet sheet : workbook) {
-
-                String projectName = sheet.getSheetName();
-
-                Project project = getProjectByName(sheet.getSheetName());
-
-                if (project == null) {
-                    project = new Project();
-                    project.setName(projectName);
-                    projects.add(project);
-                }
-
-                Employee employee = getEmployee(employeeName);
-
-                if (employee == null) {
-                    employee = new Employee();
-                    employee.setName(employeeName);
-                    project.employees.add(employee);
-                    employees.add(employee);
-                }
-
-                for (Row row : sheet) {
-
-                    boolean isFirstRow = row.getRowNum() == 0;
-
-                    if (!isFirstRow) {
-
-                        Task task = new Task();
-                        try {
-
-                            boolean haveDate = !cellIsNull(row, 0);
-                            boolean haveDescription = !cellIsNull(row, 1);
-                            boolean haveDuration = !cellIsNull(row, 2);
-
-                            CheckImportValues checkImportValues = new CheckImportValues(filePath, projectName, row.getRowNum() + 1);
-
-                            if(haveDate){
-                                checkImportValues.isCorrectDate( row, 0);
-                            }
-
-                            if(haveDuration){
-                                checkImportValues.isCorrectNumberValue(row.getCell(2).toString());
-                            }
-
-                            if (haveDate && haveDescription && haveDuration) {
-                                task.setDate(row.getCell(0).getLocalDateTimeCellValue().toLocalDate());
-                                task.setDescription(row.getCell(1).getStringCellValue());
-                                task.setDuration(row.getCell(2).getNumericCellValue());
-                                employee.tasks.add(task);
-                                employee.projects.add(project);
-                                project.addTask(task);
-                            }
-                            else{
-                                checkImportValues.errorInfo(haveDate ,haveDescription, haveDuration);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+            boolean workbookOpen = false;
+            Workbook workbook = null;
+            
+            try {
+            	workbook = openWorkbook(filePath);
+            } catch (Exception e) {
+            	System.out.println("Błąd przy próbie otwarcia pliku " + filePath);
+            }
+            if (workbook != null)
+            {
+	            for (Sheet sheet : workbook) {
+	            
+	
+	                String projectName = sheet.getSheetName();
+	
+	                Project project = getProjectByName(sheet.getSheetName());
+	
+	                if (project == null) {
+	                    project = new Project();
+	                    project.setName(projectName);
+	                    projects.add(project);
+	                }
+	
+	                Employee employee = getEmployee(employeeName);
+	
+	                if (employee == null) {
+	                    employee = new Employee();
+	                    employee.setName(employeeName);
+	                    project.employees.add(employee);
+	                    employees.add(employee);
+	                }
+	
+	                for (Row row : sheet) {
+	
+	                    boolean isFirstRow = row.getRowNum() == 0;
+	
+	                    if (!isFirstRow) {
+	
+	                        Task task = new Task();
+	                        try {
+	
+	                            boolean haveDate = !cellIsNull(row, 0);
+	                            boolean haveDescription = !cellIsNull(row, 1);
+	                            boolean haveDuration = !cellIsNull(row, 2);
+	
+	                            CheckImportValues checkImportValues = new CheckImportValues(filePath, projectName, row.getRowNum() + 1);
+	
+	                            if(haveDate){
+	                                checkImportValues.isCorrectDate( row, 0);
+	                            }
+	
+	                            if(haveDuration){
+	                                checkImportValues.isCorrectNumberValue(row.getCell(2).toString());
+	                            }
+	
+	                            if (haveDate && haveDescription && haveDuration) {
+	                                task.setDate(row.getCell(0).getLocalDateTimeCellValue().toLocalDate());
+	                                task.setDescription(row.getCell(1).getStringCellValue());
+	                                task.setDuration(row.getCell(2).getNumericCellValue());
+	                                employee.tasks.add(task);
+	                                employee.projects.add(project);
+	                                project.addTask(task);
+	                            }
+	                            else{
+	                                checkImportValues.errorInfo(haveDate ,haveDescription, haveDuration);
+	                            }
+	                        } catch (Exception e) {
+	                            e.printStackTrace();
+	                        }
+	                    }
+	                }
+	            }
             }
         }
 
