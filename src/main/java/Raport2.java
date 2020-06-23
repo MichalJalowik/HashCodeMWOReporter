@@ -11,7 +11,7 @@ public class Raport2 implements Raport {
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
 		
-		if (projects.isEmpty() || projects == null) {
+		if (projects == null || projects.isEmpty()) {
 			String[][] raport = new String[1][2];
 			raport[0][0] = "Projekt";
 			raport[0][1] = "Przepracowane godziny";

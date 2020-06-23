@@ -59,6 +59,47 @@ public class RaportsTest {
 	}
 	
 	@Test
+	public void testRaport1WithNullProjects() {
+		Set<Project> nullProjects = null;
+		raport1.generateRaport(nullProjects);
+		String[][] expectedEmptyRaport = new String[1][2];
+		expectedEmptyRaport[0][0] = "Pracownik";
+		expectedEmptyRaport[0][1] = "Przepracowane godziny";
+		Assert.assertEquals(raport1.getRaport(),expectedEmptyRaport);
+	}
+	
+	@Test
+	public void testRaport2WithNullProjects() {
+		Set<Project> nullProjects = null;
+		raport2.generateRaport(nullProjects);
+		String[][] expectedEmptyRaport = new String[1][2];
+		expectedEmptyRaport[0][0] = "Projekt";
+		expectedEmptyRaport[0][1] = "Przepracowane godziny";
+		Assert.assertEquals(raport2.getRaport(),expectedEmptyRaport);
+	}
+	
+	@Test
+	public void testRaport3WithNullProjects() {
+		Set<Project> nullProjects = null;
+		raport3.generateRaport(nullProjects);
+		String[][] expectedEmptyRaport = new String[1][2];
+		expectedEmptyRaport[0][0] = "Pracownik";
+		expectedEmptyRaport[0][1] = "Przepracowane godziny";
+		Assert.assertEquals(raport3.getRaport(),expectedEmptyRaport);
+	}
+	
+	@Test
+	public void testRaport4WithNullProjects() {
+		Set<Project> nullProjects = null;
+		raport4.generateRaport(nullProjects);
+		String[][] expectedEmptyRaport = new String[1][3];
+		expectedEmptyRaport[0][0] = "Zadanie";
+		expectedEmptyRaport[0][1] = "Projekt";
+		expectedEmptyRaport[0][2] = "Przepracowane godziny";
+		Assert.assertEquals(raport4.getRaport(),expectedEmptyRaport);
+	}
+	
+	@Test
 	public void testDatesInRaport1WithEmptyProjects() {
 		raport1.generateRaport(projects);
 		Assert.assertNull(raport1.getMinDate());
