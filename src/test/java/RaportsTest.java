@@ -31,6 +31,15 @@ public class RaportsTest {
 	}
 	
 	@Test
+	public void testRaport2WithEmptyProjects() {
+		raport2.generateRaport(projects);
+		String[][] expectedEmptyRaport = new String[1][2];
+		expectedEmptyRaport[0][0] = "Projekt";
+		expectedEmptyRaport[0][1] = "Przepracowane godziny";
+		Assert.assertEquals(raport2.getRaport(),expectedEmptyRaport);
+	}
+	
+	@Test
 	public void testDatesInRaport1WithEmptyProjects() {
 		raport1.generateRaport(projects);
 		Assert.assertNull(raport1.getMinDate());
