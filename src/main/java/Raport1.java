@@ -23,7 +23,7 @@ public class Raport1 implements Raport {
 		int i = 0;
 		for (Employee employee : employees) {
 			rawRaport[i][0] = employee.getName();
-			int workedHours = 0;
+			double workedHours = 0;
 			
 			for (Task task : employee.getTasks()) {
 				workedHours += task.getDuration();
@@ -41,7 +41,7 @@ public class Raport1 implements Raport {
 			i++;
 		}
 				
-		Arrays.sort(rawRaport, (a, b) -> Integer.compare(Integer.valueOf(b[1]), Integer.valueOf(a[1])));
+		Arrays.sort(rawRaport, (a, b) -> Double.compare(Double.valueOf(b[1]), Double.valueOf(a[1])));
 		
 		String[][] raport = new String[rows + 1][2];
 		raport[0][0] = "Pracownik";

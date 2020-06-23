@@ -28,7 +28,7 @@ public class Raport3 implements Raport {
 		for (Employee employee : employees) {
 			
 			rawRaport[i][0] = employee.getName();
-			int workedHours = 0;
+			double workedHours = 0;
 			
 			int j = 1;
 			for (Project project : projects) {
@@ -36,7 +36,7 @@ public class Raport3 implements Raport {
 					raport[i][j] = "Godziny dla " + project.getName();
 				}
 				
-				int projectWorkedHours = 0;
+				double projectWorkedHours = 0;
 				
 				if (employee.getProjects().contains(project)) {
 					for (Task task : project.getTasks()) {
@@ -63,7 +63,7 @@ public class Raport3 implements Raport {
 			i++;
 		}
 			
-		Arrays.sort(rawRaport, (a, b) -> Integer.compare(Integer.valueOf(b[columns - 1]), Integer.valueOf(a[columns - 1])));
+		Arrays.sort(rawRaport, (a, b) -> Double.compare(Double.valueOf(b[columns - 1]), Double.valueOf(a[columns - 1])));
 			
 		for (int k = 1; k < rows + 1; k++) {
 			for (int l = 0; l < columns; l++) {
@@ -106,5 +106,4 @@ public class Raport3 implements Raport {
 	public LocalDate getMaxDate() {
 		return this.maxDate;
 	}
-
 }
