@@ -38,7 +38,7 @@ public class ExcelDataRaportPrinter implements DataRaportPrinter {
                 Cell cell = row.createCell(++columnCount);
                 cell.setCellValue(value);
                 if (isNumeric(value)) {
-                    cell.setCellValue(Integer.parseInt(value));
+                    cell.setCellValue(Double.parseDouble(value));
                 } else {
                     cell.setCellValue(value);
                 }
