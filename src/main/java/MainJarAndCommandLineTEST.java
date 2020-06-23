@@ -14,6 +14,7 @@ public class MainJarAndCommandLineTEST {
         options.addOption("report1", false, "put report needed");
         options.addOption("report2", false, "put printer type");
         options.addOption("report3", false, "put printer type");
+        options.addOption("report4", false, "put printer type");
         options.addOption("console", false, "printing result on console");
         options.addOption("CSV", false, "printing result as CSV into project directory");
         options.addOption("XLS", false, "printing result as XLS into project directory");
@@ -48,7 +49,11 @@ public class MainJarAndCommandLineTEST {
                 printReport(raport,line);
             }
             if(line.hasOption("report4")) {
-                System.out.println("running......");
+                Set<Project> set = importer.importDataFromFiles(path);
+                raport = new Raport4();
+                raport.generateRaport(set);
+                System.out.println("");
+                printReport(raport,line);
             }
             if(line.hasOption("report5")) {
                 System.out.println("running......");
