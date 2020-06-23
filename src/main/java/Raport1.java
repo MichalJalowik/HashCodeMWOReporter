@@ -12,6 +12,15 @@ public class Raport1 implements Raport {
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
 		
+		if (projects == null || projects.isEmpty()) {
+			String[][] raport = new String[1][2];
+			raport[0][0] = "Pracownik";
+			raport[0][1] = "Przepracowane godziny";
+
+			this.raport = raport;
+			return raport;
+		}
+		
 		this.minDate = LocalDate.MAX;
 		this.maxDate = LocalDate.MIN;
 		
@@ -51,7 +60,7 @@ public class Raport1 implements Raport {
 			raport[j][0] = rawRaport[j - 1][0];
 			raport[j][1] = rawRaport[j - 1][1];
 		}
-				
+
 		this.raport = raport;
 		return raport;		
 	}

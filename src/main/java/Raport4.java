@@ -14,6 +14,16 @@ public class Raport4 implements Raport {
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
 		
+		if (projects == null || projects.isEmpty()) {
+			String[][] raport = new String[1][3];
+			raport[0][0] = "Zadanie";
+			raport[0][1] = "Projekt";
+			raport[0][2] = "Przepracowane godziny";
+
+			this.raport = raport;
+			return raport;
+		}
+		
 		this.minDate = LocalDate.MAX;
 		this.maxDate = LocalDate.MIN;
 		
