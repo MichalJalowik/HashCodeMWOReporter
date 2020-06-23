@@ -36,6 +36,27 @@ public class RaportsTest {
 		Assert.assertNull(raport1.getMinDate());
 		Assert.assertNull(raport1.getMaxDate());
 	}
+
+	@Test
+	public void testDatesInRaport2WithEmptyProjects() {
+		raport2.generateRaport(projects);
+		Assert.assertNull(raport2.getMinDate());
+		Assert.assertNull(raport2.getMaxDate());
+	}
+
+	@Test
+	public void testDatesInRaport3WithEmptyProjects() {
+		raport3.generateRaport(projects);
+		Assert.assertNull(raport3.getMinDate());
+		Assert.assertNull(raport3.getMaxDate());
+	}
+
+//	@Test
+//	public void testDatesInRaport4WithEmptyProjects() {
+//		raport4.generateRaport(projects);
+//		Assert.assertNull(raport4.getMinDate());
+//		Assert.assertNull(raport4.getMaxDate());
+//	}
 	
 	// zrobić testy dla pustych raportów 2-5
 	

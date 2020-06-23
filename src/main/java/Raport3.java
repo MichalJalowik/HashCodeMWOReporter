@@ -12,8 +12,10 @@ public class Raport3 implements Raport {
 	@Override
 	public String[][] generateRaport(Set<Project> projects) {
 		
-		this.minDate = LocalDate.MAX;
-		this.maxDate = LocalDate.MIN;
+		if (!projects.isEmpty()) {
+			this.minDate = LocalDate.MAX;
+			this.maxDate = LocalDate.MIN;
+		}
 		
 		Set<Employee> employees = parseEmployees(projects);
 		int rows = employees.size();
