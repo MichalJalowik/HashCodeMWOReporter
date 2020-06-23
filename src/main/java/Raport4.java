@@ -17,34 +17,6 @@ public class Raport4 implements Raport {
 		this.minDate = LocalDate.MAX;
 		this.maxDate = LocalDate.MIN;
 		
-//		int rows = 0;
-//		
-//		for (Project project : projects) {
-//			rows += project.getTasks().size();
-//		}
-//		
-//		String[][] rawRaport = new String[rows][3];
-//		
-//		int i = 0;
-//		for (Project project : projects) {
-//			for (Task task : project.getTasks()) {
-//				
-//				rawRaport[i][0] = task.getDescription();
-//				rawRaport[i][1] = project.getName();
-//				rawRaport[i][2] = String.valueOf(task.getDuration());
-//				
-//				if (task.getDate().isBefore(this.minDate)) {
-//					this.minDate = task.getDate();
-//				}
-//				
-//				if (task.getDate().isAfter(this.maxDate)) {
-//					this.maxDate = task.getDate();
-//				}
-//				
-//				i++;
-//			}
-//		}
-		
 		Map<Map<String, String>, Double> taskMap = generateTaskMap(projects);
 		int rows = taskMap.size();
 		String[][] rawRaport = new String[rows][3];
@@ -78,16 +50,12 @@ public class Raport4 implements Raport {
 	}
 	
 	private Map<Map<String, String>, Double> generateTaskMap(Set<Project> projects) {
-	Map<Map<String, String>, Double> taskMap = new HashMap<>();
+		Map<Map<String, String>, Double> taskMap = new HashMap<>();
 	
-	for (Project project : projects) {
-		for (Task task : project.getTasks()) {
+		for (Project project : projects) {
+			for (Task task : project.getTasks()) {
 			
-			// refoprmat
-			String taskDescription = task.getDescription();
-			String projectName = project.getName();
-			
-			Map<String, String> map = Map.of(taskDescription, projectName);
+			Map<String, String> map = Map.of(task.getDescription(), project.getName());
 			
 			if (!taskMap.containsKey(map)) {
 				taskMap.put(map, task.getDuration());
