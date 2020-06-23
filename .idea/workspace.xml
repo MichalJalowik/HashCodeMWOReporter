@@ -69,7 +69,7 @@
     <configuration name="MainJarAndCommandLineTEST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainJarAndCommandLineTEST" />
       <module name="HashCodeMWOReporter" />
-      <option name="PROGRAM_PARAMETERS" value="-path C:\Users\micha\Desktop\reporter-dane\reporter-dane\2012\01 -report2 -CSV" />
+      <option name="PROGRAM_PARAMETERS" value="-path C:\Users\micha\Desktop\reporter-dane\reporter-dane\2012\01  -report2 -report1 -report3 -CSV -PDF -console -XLS" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

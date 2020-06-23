@@ -1,5 +1,4 @@
 import org.apache.commons.cli.*;
-import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import java.io.IOException;
@@ -8,7 +7,8 @@ public class MainJarAndCommandLineTEST {
     public static void main (String[] args) throws ParseException{
         DataImporter importer = new DataImporter();
         Raport raport = null;
-        DataRaportPrinter printer = null;
+        //DataRaportPrinter printer = null;
+
         Options options = new Options();
         options.addOption("path", true, "put path of location");
         options.addOption("report1", false, "put report needed");
@@ -30,16 +30,22 @@ public class MainJarAndCommandLineTEST {
                 Set<Project> set = importer.importDataFromFiles(path);
                 raport = new Raport1();
                 raport.generateRaport(set);
+                System.out.println("");
+                printReport(raport,line);
             }
             if(line.hasOption("report2")) {
                 Set<Project> set = importer.importDataFromFiles(path);
                 raport = new Raport2();
                 raport.generateRaport(set);
+                System.out.println("");
+                printReport(raport,line);
             }
             if(line.hasOption("report3")) {
                 Set<Project> set = importer.importDataFromFiles(path);
                 raport = new Raport3();
                 raport.generateRaport(set);
+                System.out.println("");
+                printReport(raport,line);
             }
             if(line.hasOption("report4")) {
                 System.out.println("running......");
@@ -47,46 +53,7 @@ public class MainJarAndCommandLineTEST {
             if(line.hasOption("report5")) {
                 System.out.println("running......");
             }
-            if(line.hasOption("console")) {
-                System.out.println("running......on console below");
-                printer = new ConsoleDataRaportPrinter();
-                try {
-                    printer.printRaport(raport);
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            if(line.hasOption("CSV")) {
-                System.out.println("saving......as CSV into project directory");
-                printer = new CSVDataRaportPrinter();
-                try {
-                    printer.printRaport(raport);
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            if(line.hasOption("XLS")) {
-                System.out.println("saving......as XLS into project directory");
-                printer = new ExcelDataRaportPrinter();
-                try {
-                    printer.printRaport(raport);
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            if(line.hasOption("PDF")) {
-                System.out.println("saving......as PDF into project directory");
-                printer = new PDFDataRaportPrinter();
-                try {
-                    printer.printRaport(raport);
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
+
             if(line.hasOption("info")) {
                 System.out.println("operations manual.....");
             }
@@ -104,4 +71,49 @@ public class MainJarAndCommandLineTEST {
             System.err.println( "Parsing failed.  Reason: " + exp.getMessage() );
         }
     }
+
+    static void printReport(Raport raport, CommandLine line){
+        DataRaportPrinter printer;
+        if(line.hasOption("console")) {
+            //System.out.println("running......on console below");
+            printer = new ConsoleDataRaportPrinter();
+            try {
+                printer.printRaport(raport);
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        if(line.hasOption("CSV")) {
+            //System.out.println("saving......as CSV into project directory");
+            printer = new CSVDataRaportPrinter();
+            try {
+                printer.printRaport(raport);
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        if(line.hasOption("XLS")) {
+            //System.out.println("saving......as XLS into project directory");
+            printer = new ExcelDataRaportPrinter();
+            try {
+                printer.printRaport(raport);
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        if(line.hasOption("PDF")) {
+            //System.out.println("saving......as PDF into project directory");
+            printer = new PDFDataRaportPrinter();
+            try {
+                printer.printRaport(raport);
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
