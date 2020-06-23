@@ -40,6 +40,15 @@ public class RaportsTest {
 	}
 	
 	@Test
+	public void testRaport3WithEmptyProjects() {
+		raport3.generateRaport(projects);
+		String[][] expectedEmptyRaport = new String[1][2];
+		expectedEmptyRaport[0][0] = "Pracownik";
+		expectedEmptyRaport[0][1] = "Przepracowane godziny";
+		Assert.assertEquals(raport3.getRaport(),expectedEmptyRaport);
+	}
+	
+	@Test
 	public void testDatesInRaport1WithEmptyProjects() {
 		raport1.generateRaport(projects);
 		Assert.assertNull(raport1.getMinDate());
@@ -67,8 +76,7 @@ public class RaportsTest {
 		Assert.assertNull(raport4.getMaxDate());
 	}
 	
-	// zrobić testy dla pustych raportów 2-5
+	// zrobić testy dla pustych raportu 5
 	
-	// zrobić testy dat dla pustych 1-5
 
 }
