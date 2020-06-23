@@ -20,7 +20,7 @@ public class Raport2 implements Raport {
 		int i = 0;
 		for (Project project : projects) {
 			rawRaport[i][0] = project.getName();
-			int workedHours = 0;
+			double workedHours = 0;
 	
 			for (Task task : project.getTasks()) {
 				workedHours += task.getDuration();
@@ -38,7 +38,7 @@ public class Raport2 implements Raport {
 			i++;
 		}
 		
-		Arrays.sort(rawRaport, (a, b) -> Integer.compare(Integer.valueOf(b[1]), Integer.valueOf(a[1])));
+		Arrays.sort(rawRaport, (a, b) -> Double.compare(Double.valueOf(b[1]), Double.valueOf(a[1])));
 		
 		String[][] raport = new String[rows + 1][2];
 		raport[0][0] = "Projekt";
