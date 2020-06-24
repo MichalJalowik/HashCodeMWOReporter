@@ -83,6 +83,8 @@ public class RaportsTest {
 		project1.addEmployee(employee1);
 		project1.addEmployee(employee2);
 		project2.addEmployee(employee2);
+		projects.add(project1);
+		projects.add(project2);
 		
 		return projects;
 	}
@@ -93,7 +95,7 @@ public class RaportsTest {
 		String[][] expectedEmptyRaport = new String[1][2];
 		expectedEmptyRaport[0][0] = "Pracownik";
 		expectedEmptyRaport[0][1] = "Przepracowane godziny";
-		Assert.assertEquals(raport1.getRaport(),expectedEmptyRaport);
+		Assert.assertEquals(raport1.getRaport(), expectedEmptyRaport);
 	}
 	
 	@Test
@@ -102,7 +104,7 @@ public class RaportsTest {
 		String[][] expectedEmptyRaport = new String[1][2];
 		expectedEmptyRaport[0][0] = "Projekt";
 		expectedEmptyRaport[0][1] = "Przepracowane godziny";
-		Assert.assertEquals(raport2.getRaport(),expectedEmptyRaport);
+		Assert.assertEquals(raport2.getRaport(), expectedEmptyRaport);
 	}
 	
 	@Test
@@ -111,7 +113,7 @@ public class RaportsTest {
 		String[][] expectedEmptyRaport = new String[1][2];
 		expectedEmptyRaport[0][0] = "Pracownik";
 		expectedEmptyRaport[0][1] = "Przepracowane godziny";
-		Assert.assertEquals(raport3.getRaport(),expectedEmptyRaport);
+		Assert.assertEquals(raport3.getRaport(), expectedEmptyRaport);
 	}
 	
 	@Test
@@ -121,7 +123,7 @@ public class RaportsTest {
 		expectedEmptyRaport[0][0] = "Zadanie";
 		expectedEmptyRaport[0][1] = "Projekt";
 		expectedEmptyRaport[0][2] = "Przepracowane godziny";
-		Assert.assertEquals(raport4.getRaport(),expectedEmptyRaport);
+		Assert.assertEquals(raport4.getRaport(), expectedEmptyRaport);
 	}
 	
 	@Test
@@ -130,7 +132,7 @@ public class RaportsTest {
 		String[][] expectedEmptyRaport = new String[1][2];
 		expectedEmptyRaport[0][0] = "Pracownik";
 		expectedEmptyRaport[0][1] = "Przepracowane godziny";
-		Assert.assertEquals(raport1.getRaport(),expectedEmptyRaport);
+		Assert.assertEquals(raport1.getRaport(), expectedEmptyRaport);
 	}
 	
 	@Test
@@ -139,7 +141,7 @@ public class RaportsTest {
 		String[][] expectedEmptyRaport = new String[1][2];
 		expectedEmptyRaport[0][0] = "Projekt";
 		expectedEmptyRaport[0][1] = "Przepracowane godziny";
-		Assert.assertEquals(raport2.getRaport(),expectedEmptyRaport);
+		Assert.assertEquals(raport2.getRaport(), expectedEmptyRaport);
 	}
 	
 	@Test
@@ -148,7 +150,7 @@ public class RaportsTest {
 		String[][] expectedEmptyRaport = new String[1][2];
 		expectedEmptyRaport[0][0] = "Pracownik";
 		expectedEmptyRaport[0][1] = "Przepracowane godziny";
-		Assert.assertEquals(raport3.getRaport(),expectedEmptyRaport);
+		Assert.assertEquals(raport3.getRaport(), expectedEmptyRaport);
 	}
 	
 	@Test
@@ -158,7 +160,7 @@ public class RaportsTest {
 		expectedEmptyRaport[0][0] = "Zadanie";
 		expectedEmptyRaport[0][1] = "Projekt";
 		expectedEmptyRaport[0][2] = "Przepracowane godziny";
-		Assert.assertEquals(raport4.getRaport(),expectedEmptyRaport);
+		Assert.assertEquals(raport4.getRaport(), expectedEmptyRaport);
 	}
 	
 	@Test
@@ -189,7 +191,21 @@ public class RaportsTest {
 		Assert.assertNull(raport4.getMaxDate());
 	}
 	
-	// zrobić testy dla pustych raportu 5
+	@Test
+	public void testDatesInRaport1() {
+		raport1.generateRaport(projects);
+		Assert.assertEquals(raport1.getMinDate(), LocalDate.of(2015, 5, 5));
+		Assert.assertEquals(raport1.getMaxDate(), LocalDate.of(2015, 5, 8));
+	}
+	
+	
+	
+	
+	// zrobić testy dat dla projects
+	
+	// zrobić testy dla raportu 5
+	
+	// zrobić testy dla projercts
 	
 
 }
