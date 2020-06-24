@@ -198,6 +198,27 @@ public class RaportsTest {
 		Assert.assertEquals(raport1.getMaxDate(), LocalDate.of(2015, 5, 8));
 	}
 	
+	@Test
+	public void testDatesInRaport2() {
+		raport2.generateRaport(projects);
+		Assert.assertEquals(raport2.getMinDate(), LocalDate.of(2015, 5, 5));
+		Assert.assertEquals(raport2.getMaxDate(), LocalDate.of(2015, 5, 8));
+	}
+	
+	@Test
+	public void testDatesInRaport3() {
+		raport3.generateRaport(projects);
+		Assert.assertEquals(raport3.getMinDate(), LocalDate.of(2015, 5, 5));
+		Assert.assertEquals(raport3.getMaxDate(), LocalDate.of(2015, 5, 8));
+	}
+	
+//	@Test
+//	public void testDatesInRaport4() {
+//		raport4.generateRaport(projects);
+//		Assert.assertEquals(raport4.getMinDate(), LocalDate.of(2015, 5, 5));
+//		Assert.assertEquals(raport4.getMaxDate(), LocalDate.of(2015, 5, 8));
+//	}
+	
 	
 	
 	
