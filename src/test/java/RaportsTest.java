@@ -267,28 +267,29 @@ public class RaportsTest {
 		Assert.assertTrue(raport3.getRaport().length == 3);
 	}
 	
-//	@Test
-//	public void testRaport3WithNotEmptyProjects() {
-//		raport3.generateRaport(projects);
-//		
-//		// Hash set as input. Order may be different.
-//				
-//		String[][] expectedRaport = new String[3][4];
-//		expectedRaport[0][0] = "Pracownik";
-//		expectedRaport[0][1] = "Godziny dla Projekt 2";
-//		expectedRaport[0][2] = "Godziny dla Projekt 1";
-//		expectedRaport[0][3] = "Przepracowane godziny";
-//		expectedRaport[1][0] = "Anna Nowak";
-//		expectedRaport[1][1] = "6.0";
-//		expectedRaport[1][2] = "1.0";
-//		expectedRaport[1][3] = "7.0";
-//		expectedRaport[2][0] = "Jan Kowalski";
-//		expectedRaport[2][1] = "0.0";
-//		expectedRaport[2][2] = "1.5";
-//		expectedRaport[2][3] = "1.5";
-//		
-//		Assert.assertEquals(raport3.getRaport(), expectedRaport);
-//	}
+	@Test
+	public void testRaport3ProjectWorkedHoursValue() {
+		String[][] raport = raport3.generateRaport(projects);
+		
+		int rowIndex = 0;
+		int columnIndex = 0;
+		boolean isFound = false;
+		for (int i = 0; i < raport.length; i++) {
+			for (int j = 0; j < raport[0].length; j++) {
+				if (raport[i][0].equals("Anna Nowak") && raport[0][j].equals("Godziny dla Projekt 2")) {
+					rowIndex = i;
+					columnIndex = j;
+					isFound = true;
+					break;
+				}
+			}
+			if (isFound) {
+				break;
+			}
+		}
+		
+		Assert.assertEquals(raport[rowIndex][columnIndex], "6.0");
+	}
 	
 	@Test
 	public void testRaport4LengthForNotEmptyProjects() {
