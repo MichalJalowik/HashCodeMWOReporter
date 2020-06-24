@@ -75,9 +75,10 @@ public class Reporter {
 						raport = new Raport4();
 						break;
 					}
-					raport.generateRaport(projects);
+					
 		
 					if (selection2 != 0) {
+						raport.generateRaport(projects);
 						selection3 = -1;
 						while (selection3 != 0) {
 							selection3 = menu3.makeSelection();
