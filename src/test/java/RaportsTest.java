@@ -219,6 +219,12 @@ public class RaportsTest {
 		Assert.assertEquals(raport4.getMaxDate(), LocalDate.of(2015, 5, 8));
 	}
 	
+	@Test
+	public void testRaport1LengthForNotEmptyProjects() {
+		raport1.generateRaport(projects);
+		Assert.assertTrue(raport1.getRaport().length == 3);
+	}
+	
 	
 	
 	
