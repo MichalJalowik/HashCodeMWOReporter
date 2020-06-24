@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="HashCodeMWOReporter" target="9" />
+      <module name="HashCodeMWOReporter" target="10" />
     </bytecodeTargetLevel>
   </component>
 </project>

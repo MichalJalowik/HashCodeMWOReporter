@@ -40,6 +40,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SudokuBoardsChecker 202001" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -69,7 +70,7 @@
     <configuration name="MainJarAndCommandLineTEST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainJarAndCommandLineTEST" />
       <module name="HashCodeMWOReporter" />
-      <option name="PROGRAM_PARAMETERS" value="-path C:\Users\micha\Desktop\reporter-dane\reporter-dane\2012\02  -report2 -report1 -report3 -report4 -CSV -PDF -console -XLS" />
+      <option name="PROGRAM_PARAMETERS" value="-path &quot;C:\Users\micha\Desktop\Java programming\HashCodeMWOReporter\src\main\resources\valid\2018&quot; -report2 -chart -filterEMP Lewicka -filterDATE 01.02.2018_01.06.2018" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
