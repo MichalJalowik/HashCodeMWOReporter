@@ -1,10 +1,11 @@
 /target/
 /bin/
+/.settings/
+/.idea/
 *.csv
 *.pdf
 *.xlsx
 *.class
-/.idea/
 *.xml
 *.JPG
 *.jpg
