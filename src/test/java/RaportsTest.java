@@ -240,14 +240,13 @@ public class RaportsTest {
 		Assert.assertEquals(raport1.getRaport(), expectedRaport);
 	}
 	
-//	@Test
-//	public void testRaport1WorkedHoursValue() {
-//		raport1.generateRaport(projects);
-//		
-//		
-//		
-//		Assert.assertTrue(raport1.getRaport().length == 3);
-//	}
+	@Test
+	public void testRaport2LengthForNotEmptyProjects() {
+		raport2.generateRaport(projects);
+		Assert.assertTrue(raport2.getRaport().length == 3);
+	}
+	
+
 	
 	
 	
