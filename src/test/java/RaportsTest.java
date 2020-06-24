@@ -225,6 +225,30 @@ public class RaportsTest {
 		Assert.assertTrue(raport1.getRaport().length == 3);
 	}
 	
+	@Test
+	public void testRaport1WithNotEmptyProjects() {
+		raport1.generateRaport(projects);
+				
+		String[][] expectedRaport = new String[3][2];
+		expectedRaport[0][0] = "Pracownik";
+		expectedRaport[0][1] = "Przepracowane godziny";
+		expectedRaport[1][0] = "Anna Nowak";
+		expectedRaport[1][1] = "7.0";
+		expectedRaport[2][0] = "Jan Kowalski";
+		expectedRaport[2][1] = "1.5";
+		
+		Assert.assertEquals(raport1.getRaport(), expectedRaport);
+	}
+	
+//	@Test
+//	public void testRaport1WorkedHoursValue() {
+//		raport1.generateRaport(projects);
+//		
+//		
+//		
+//		Assert.assertTrue(raport1.getRaport().length == 3);
+//	}
+	
 	
 	
 	
