@@ -15,10 +15,10 @@ public class ChartDataRaportPrinter implements DataRaportPrinter {
         String raportType = raport.getClass().getName();
         if (raportType.equals("Raport1") || raportType.equals("Raport2") || raportType.equals("Raport5")) {
             chartType = new ChartTypeXStringsYNumbers();
+            chartType.printChart(raport);
         }
         else {
-            System.out.println(raportType + " jest nieobslugiwany. Pracujemy nad tym.");
+            System.out.println("Wykres dla " + raportType + " jest aktualnie nieobslugiwany. Pracujemy nad tym.");
         }
-        chartType.printChart(raport);
     }
 }
