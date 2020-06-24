@@ -246,6 +246,21 @@ public class RaportsTest {
 		Assert.assertTrue(raport2.getRaport().length == 3);
 	}
 	
+	@Test
+	public void testRaport2WithNotEmptyProjects() {
+		raport2.generateRaport(projects);
+				
+		String[][] expectedRaport = new String[3][2];
+		expectedRaport[0][0] = "Projekt";
+		expectedRaport[0][1] = "Przepracowane godziny";
+		expectedRaport[1][0] = "Projekt 2";
+		expectedRaport[1][1] = "6.0";
+		expectedRaport[2][0] = "Projekt 1";
+		expectedRaport[2][1] = "2.5";
+		
+		Assert.assertEquals(raport2.getRaport(), expectedRaport);
+	}
+	
 
 	
 	
