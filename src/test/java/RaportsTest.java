@@ -292,6 +292,30 @@ public class RaportsTest {
 	}
 	
 	@Test
+	public void testRaport3ProjectWorkedHoursEmptyValue() {
+		String[][] raport = raport3.generateRaport(projects);
+		
+		int rowIndex = 0;
+		int columnIndex = 0;
+		boolean isFound = false;
+		for (int i = 0; i < raport.length; i++) {
+			for (int j = 0; j < raport[0].length; j++) {
+				if (raport[i][0].equals("Jan Kowalski") && raport[0][j].equals("Godziny dla Projekt 2")) {
+					rowIndex = i;
+					columnIndex = j;
+					isFound = true;
+					break;
+				}
+			}
+			if (isFound) {
+				break;
+			}
+		}
+		
+		Assert.assertEquals(raport[rowIndex][columnIndex], "0.0");
+	}
+	
+	@Test
 	public void testRaport4LengthForNotEmptyProjects() {
 		raport4.generateRaport(projects);
 		Assert.assertTrue(raport4.getRaport().length == 5);
