@@ -39,7 +39,7 @@ public class CheckImportValues
         }
     }
 
-    public void errorInfo(boolean haveData, boolean haveDescription, boolean haveDuration){
+    public void printErrorMessage(boolean haveData, boolean haveDescription, boolean haveDuration){
 
         if(!haveData){
             message += " Brak daty.";
