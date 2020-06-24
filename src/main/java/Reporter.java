@@ -29,7 +29,7 @@ public class Reporter {
 						"Raport TOP10 najbardziej czasochłonnych zadań"});
 
 		Menu menu3 = new Menu("WYBÓR PREZENTACJI RAPORTU", new String[] { "Wyświetlenie na konsoli",
-				"Eksport do pliku CSV", "Eksport do pliku XLSX", "Eksport do pliku PDF" });
+				"Eksport do pliku CSV", "Eksport do pliku XLSX", "Eksport do pliku PDF", "Stworz wykres" });
 
 		int selection1 = -1;
 		int selection2 = -1;
@@ -94,6 +94,9 @@ public class Reporter {
 							case 4:
 								printer = new PDFDataRaportPrinter();
 								break;
+							case 5:
+					    			printer = new ChartDataRaportPrinter();
+					    			break;
 							}
 		
 							if (selection3 != 0) {
