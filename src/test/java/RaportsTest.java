@@ -41,12 +41,12 @@ public class RaportsTest {
 		task1.setDate(LocalDate.of(2015, 5, 5));
 		
 		Task task2 = new Task();
-		task2.setDescription("Spotkanie z klientem");
+		task2.setDescription("Spotkanie z managerem");
 		task2.setDuration(2.5);
 		task2.setDate(LocalDate.of(2015, 5, 6));
 		
 		Task task3 = new Task();
-		task3.setDescription("Spotkanie z managerem");
+		task3.setDescription("Spotkanie z klientem");
 		task3.setDuration(1);
 		task3.setDate(LocalDate.of(2015, 5, 7));
 		
@@ -318,19 +318,22 @@ public class RaportsTest {
 	@Test
 	public void testRaport4LengthForNotEmptyProjects() {
 		raport4.generateRaport(projects);
-		Assert.assertTrue(raport4.getRaport().length == 5);
+		Assert.assertTrue(raport4.getRaport().length == 4);
 	}
-	
+	@Test
+	public void testRaport4TaskWorkedHoursValue() {
+		String[][] raport = raport4.generateRaport(projects);
+		
+		int index = 0;
+		for (int i = 0; i < raport.length; i++) {
+			if (raport[i][0].equals("Spotkanie z klientem") && raport[i][1].equals("Projekt 1")) {
+				index = i;
+				break;
+			}
+		}
+		
+		Assert.assertEquals(raport[index][2], "2.5");
+	}
 
-	
-	
-	
-	
-	// zrobić testy dat dla projects
-	
-	// zrobić testy dla raportu 5
-	
-	// zrobić testy dla projercts
-	
-
+	// TODO: Tests for raport 5
 }
