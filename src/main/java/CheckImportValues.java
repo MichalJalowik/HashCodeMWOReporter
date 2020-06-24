@@ -1,3 +1,4 @@
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.text.DateFormat;
@@ -21,9 +22,9 @@ public class CheckImportValues
         message = "Błąd w pliku " + fileName + " w arkuszu " + worksheetName + " w wierszu " + rowIndex + ".";
     }
 
-    public void isCorrectNumberValue(String numberValue){
+    public void isCorrectNumberValue(Cell cell){
         try {
-            Double.parseDouble(numberValue);
+            double cellValue = cell.getNumericCellValue();
         } catch (Exception e) {
             System.out.println(message + " Niepoprawny format liczby");
         }
@@ -38,7 +39,7 @@ public class CheckImportValues
         }
     }
 
-    public void errorInfo(boolean haveData, boolean haveDescription, boolean haveDuration){
+    public void printErrorMessage(boolean haveData, boolean haveDescription, boolean haveDuration){
 
         if(!haveData){
             message += " Brak daty.";

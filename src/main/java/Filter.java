@@ -32,6 +32,36 @@ public class Filter
         return projects;
     }
 
+    public Set<Project> filterByTaskName(Set<Project> projects, String taskName){
+
+        Predicate<Task> nameContainsPattern = task -> task.getDescription().contains(taskName);
+        boolean isTaskNameNotEmpty = !taskName.equals("");
+
+        if(isTaskNameNotEmpty){
+
+            Set<Project> result = projects
+                    .stream()
+                    .filter(project -> {
+                        return project.getTasks()
+                                .stream()
+                                .anyMatch(nameContainsPattern);
+                    })
+                    .collect(Collectors.toSet());
+
+            result.stream()
+                    .forEach(project -> project.getTasks().removeIf(nameContainsPattern.negate()));
+
+            result.stream()
+                    .forEach(project -> project.getEmployees().forEach(employee -> employee.getTasks().removeIf(nameContainsPattern.negate())));
+
+            return result;
+        }
+
+        return projects;
+    }
+
+
+
     public Set<Project> filterByDate(Set<Project> projects, String userDateFrom, String userDateTo){
 
         boolean userDateIsNotEmpty = !userDateFrom.equals("") || !userDateTo.equals("");
