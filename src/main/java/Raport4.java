@@ -44,6 +44,10 @@ public class Raport4 implements Raport {
 		
 		Arrays.sort(rawRaport, (a, b) -> Double.compare(Double.valueOf(b[2]), Double.valueOf(a[2])));
 		
+		if (printedValues > rows) {
+			printedValues = rows;
+		}
+		
 		String[][] raport = new String[printedValues + 1][3];
 		raport[0][0] = "Zadanie";
 		raport[0][1] = "Projekt";
