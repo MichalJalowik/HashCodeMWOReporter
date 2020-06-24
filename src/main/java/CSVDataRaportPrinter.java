@@ -37,8 +37,5 @@ public class CSVDataRaportPrinter implements DataRaportPrinter {
             System.err.print("Error: nie można zapisać pliku!\n" + "Sprawdz czy plik " + fileName
                     + " nie jest otwarty w innym programie.");
         }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 }
