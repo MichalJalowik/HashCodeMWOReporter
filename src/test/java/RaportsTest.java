@@ -59,7 +59,7 @@ public class RaportsTest {
 		project1.setName("Projekt 1");
 		
 		Project project2 = new Project();
-		project1.setName("Projekt 2");
+		project2.setName("Projekt 2");
 		
 		employee1.addTask(task1);
 		employee2.addTask(task2);
@@ -212,12 +212,12 @@ public class RaportsTest {
 		Assert.assertEquals(raport3.getMaxDate(), LocalDate.of(2015, 5, 8));
 	}
 	
-//	@Test
-//	public void testDatesInRaport4() {
-//		raport4.generateRaport(projects);
-//		Assert.assertEquals(raport4.getMinDate(), LocalDate.of(2015, 5, 5));
-//		Assert.assertEquals(raport4.getMaxDate(), LocalDate.of(2015, 5, 8));
-//	}
+	@Test
+	public void testDatesInRaport4() {
+		raport4.generateRaport(projects);
+		Assert.assertEquals(raport4.getMinDate(), LocalDate.of(2015, 5, 5));
+		Assert.assertEquals(raport4.getMaxDate(), LocalDate.of(2015, 5, 8));
+	}
 	
 	
 	
