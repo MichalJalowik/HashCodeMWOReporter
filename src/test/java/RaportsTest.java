@@ -261,6 +261,12 @@ public class RaportsTest {
 		Assert.assertEquals(raport2.getRaport(), expectedRaport);
 	}
 	
+	@Test
+	public void testRaport3LengthForNotEmptyProjects() {
+		raport3.generateRaport(projects);
+		Assert.assertTrue(raport3.getRaport().length == 3);
+	}
+	
 
 	
 	
