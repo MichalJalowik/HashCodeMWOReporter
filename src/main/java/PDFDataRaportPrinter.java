@@ -17,19 +17,24 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-public class PDFDataRaportPrinter implements DataRaportPrinter {
+public class PDFDataRaportPrinter extends DataRaportPrinter {
 
-	@Override
-	public void printRaport(Raport raport) throws IOException {
+	public PDFDataRaportPrinter(Raport raport) {
+        super(raport);
+        // TODO Auto-generated constructor stub
+    }
+
+    @Override
+	public void printRaport() throws IOException {
 		String raportDate = LocalDate.now().toString();
-		String raportType = raport.getClass().getName();
+		String raportType = this.getRaportObject().getClass().getName();
 		String fileName = raportType + "_" + raportDate + ".pdf";
 
 		Document document = new Document();
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(fileName));
-			String raportName = raport.getName();
-			String periodOfData = "Dane za okres: " + raport.getMinDate() + " - " + raport.getMaxDate();
+			String raportName = this.getRaportName();
+			String periodOfData = "Dane za okres: " + this.getTimeRange();
 			int i = raport.getRaport()[0].length;
 			BaseFont helvetica = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED);
 			Font helvetica11 = new Font(helvetica, 11);

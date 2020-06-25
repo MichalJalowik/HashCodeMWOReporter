@@ -7,17 +7,22 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ExcelDataRaportPrinter implements DataRaportPrinter {
+public class ExcelDataRaportPrinter extends DataRaportPrinter {
+
+    public ExcelDataRaportPrinter(Raport raport) {
+        super(raport);
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
-    public void printRaport(Raport raport) throws IOException {
+    public void printRaport() throws IOException {
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Raport");
 
-        String[][] raportToPrint = raport.getRaport();
-        String raportName = "Raport: " + raport.getName();
-        String periodOfData = "Dane za okres: " + raport.getMinDate() + " - " + raport.getMaxDate();
+        String[][] raportToPrint = this.getRaportObject().getRaport();
+        String raportName = "Raport: " + this.getRaportName();
+        String periodOfData = "Dane za okres: " + this.getTimeRange();
 
         int rowCount = -1;
 
@@ -46,7 +51,7 @@ public class ExcelDataRaportPrinter implements DataRaportPrinter {
         }
 
         String raportDate = LocalDate.now().toString();
-        String raportType = raport.getClass().getName();
+        String raportType = this.getRaportObject().getClass().getName();
         String fileName = raportType + "_" + raportDate + ".xlsx";
 
         try (FileOutputStream outputStream = new FileOutputStream(fileName)) {

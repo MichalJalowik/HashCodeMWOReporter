@@ -3,26 +3,31 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 
-public class CSVDataRaportPrinter implements DataRaportPrinter {
+public class CSVDataRaportPrinter extends DataRaportPrinter {
+
+    public CSVDataRaportPrinter(Raport raport) {
+        super(raport);
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
-    public void printRaport(Raport raport) throws IOException {
+    public void printRaport() throws IOException {
 
         String raportDate = LocalDate.now().toString();
-        String raportType = raport.getClass().getName();
+        String raportType = this.getRaportObject().getClass().getName();
         String fileName = raportType + "_" + raportDate + ".csv";
 
         try (PrintWriter csvFileWriter = new PrintWriter(new File(fileName))) {
             StringBuilder raportToPrintInStringFormat = new StringBuilder();
 
-            String raportName = "Raport: " + raport.getName();
-            String periodOfData = "Dane za okres: " + raport.getMinDate() + " - " + raport.getMaxDate();
+            String raportName = "Raport: " + this.getRaportName();
+            String periodOfData = "Dane za okres: " + this.getTimeRange();
             raportToPrintInStringFormat.append(raportName);
             raportToPrintInStringFormat.append("\n");
             raportToPrintInStringFormat.append(periodOfData);
             raportToPrintInStringFormat.append("\n");
 
-            for (String[] record : raport.getRaport()) {
+            for (String[] record : this.getRaportObject().getRaport()) {
                 for (String value : record) {
                     raportToPrintInStringFormat.append(value);
                     raportToPrintInStringFormat.append(";");
