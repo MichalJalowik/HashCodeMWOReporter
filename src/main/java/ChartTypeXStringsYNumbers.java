@@ -31,9 +31,9 @@ public class ChartTypeXStringsYNumbers implements ChartType {
             String fileName = raportType + "_" + raportDate + "_chart";
             
             BitmapEncoder.saveBitmap(getChart(), fileName, BitmapFormat.JPG);
-            System.out.println("Wykres został zapisany do pliku: " + fileName + ".jpg");
+            System.out.println("Wykres zapisany do pliku: " + fileName + ".jpg");
         } catch (IOException e) {
-            System.out.println("Nie udalo sie zapisac wykresu do pliku.");
+            System.out.println("Nie udalo sie zapisac wykresu.");
             e.printStackTrace();
         }
     }
@@ -67,6 +67,8 @@ public class ChartTypeXStringsYNumbers implements ChartType {
                 .yAxisTitle(chartNumbersAxisTitle).build();
 
         chart.getStyler().setPlotGridVerticalLinesVisible(false);
+        chart.getStyler().setXAxisLabelRotation(65);
+        chart.getStyler().setLegendVisible(false);
 
         chart.addSeries("Przepracowane\ngodziny", axisOfStrings, axisOfNumbers);
 
