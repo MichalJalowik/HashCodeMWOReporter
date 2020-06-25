@@ -1,8 +1,11 @@
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
 import com.itextpdf.text.BaseColor;
@@ -10,6 +13,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
@@ -20,11 +24,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class PDFDataRaportPrinter extends DataRaportPrinter {
 
 	public PDFDataRaportPrinter(Raport raport) {
-        super(raport);
-        // TODO Auto-generated constructor stub
-    }
+		super(raport);
+		// TODO Auto-generated constructor stub
+	}
 
-    @Override
+	@Override
 	public void printRaport() throws IOException {
 		String raportDate = LocalDate.now().toString();
 		String raportType = this.getRaportObject().getClass().getName();
@@ -61,8 +65,24 @@ public class PDFDataRaportPrinter extends DataRaportPrinter {
 				}
 
 			}
-
 			document.add(table);
+			String imgName = raportType + "_" + raportDate + "_chart.jpg";
+			File curDir = new File(".");
+			File[] filesList = curDir.listFiles();
+			for (File f : filesList) {
+				if (f.getName().equals(imgName)) {
+					int indentation = 0;
+					Image image = Image.getInstance(imgName);
+					float scaler = ((document.getPageSize().getWidth() - document.leftMargin() - document.rightMargin()
+							- indentation) / image.getWidth()) * 100;
+					image.scalePercent(scaler);
+					document.add(new Paragraph("\n", helvetica13));
+					document.add(image);
+					Path p = Paths.get(imgName);
+					Files.deleteIfExists(p);
+				}
+
+			}
 			document.close();
 
 			System.out.println("Raport zapisany do pliku " + fileName);
