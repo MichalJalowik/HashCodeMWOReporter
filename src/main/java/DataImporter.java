@@ -15,11 +15,21 @@ public class DataImporter
 {
     private ArrayList<String> paths = new ArrayList<String>();
     private HashSet<Project> projects = new HashSet<>();
+    private HashSet<Employee> employees = new HashSet<>();
 
     private String getEmployeeNameFromFileName(String fileName){
         String employeeName = fileName.toString().replace('_', ' ');
         int position = employeeName.indexOf(".");
         return employeeName.substring(0, position);
+    }
+
+    private boolean projectNotContainsEmployee(String employeeName, Project project){
+        for(Employee employee : project.getEmployees()){
+            if(employee.getName().equals(employeeName)){
+                return false;
+            }
+        }
+        return true;
     }
 
     private HashSet<Project> getTasks(ArrayList<String> files)
@@ -30,6 +40,7 @@ public class DataImporter
             String fileName = path.getFileName().toString();
 
             String employeeName = getEmployeeNameFromFileName(fileName);
+            Employee employee = getEmployee(employeeName);
             Workbook workbook = openWorkbook(filePath);
 
             if (workbook == null)
@@ -39,7 +50,9 @@ public class DataImporter
             {
                 String projectName = sheet.getSheetName();
                 Project project = getProjectByName(projectName);
-                Employee employee = getEmployee(project, employeeName);
+
+                if(projectNotContainsEmployee(employeeName, project))
+                    project.addEmployee(employee);
 
                 for (Row row : sheet)
                 {
@@ -47,40 +60,10 @@ public class DataImporter
 
                     if (!isFirstRow)
                     {
-                        try
-                        {
-                            boolean haveDate = !cellIsNull(row, 0);
-                            boolean haveDescription = !cellIsNull(row, 1);
-                            boolean haveDuration = !cellIsNull(row, 2);
-                            boolean recordIsNotEmpty = haveDate || haveDescription || haveDuration;
-
-                            CheckImportValues checkImportValues = new CheckImportValues(filePath, projectName, row.getRowNum() + 1);
-
-                            if (recordIsNotEmpty)
-                            {
-                                if (haveDate)
-                                {
-                                    checkImportValues.isCorrectDate(row, 0);
-                                }
-
-                                if (haveDuration)
-                                {
-                                    checkImportValues.isCorrectNumberValue(row.getCell(2));
-                                }
-
-                                if (haveDate && haveDescription && haveDuration)
-                                {
-                                    addNewTask(project, employee, row);
-                                }
-                                else
-                                {
-                                    checkImportValues.printErrorMessage(haveDate, haveDescription, haveDuration);
-                                }
-                            }
-
+                        try  {
+                            getTaskDataFromRecord(filePath, employee, projectName, project, row);
                         }
-                        catch (Exception e)
-                        {
+                        catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -89,6 +72,38 @@ public class DataImporter
         }
 
         return projects;
+    }
+
+    private void getTaskDataFromRecord(String filePath, Employee employee, String projectName, Project project, Row row)
+    {
+        boolean haveDate = !cellIsNull(row, 0);
+        boolean haveDescription = !cellIsNull(row, 1);
+        boolean haveDuration = !cellIsNull(row, 2);
+        boolean recordIsNotEmpty = haveDate || haveDescription || haveDuration;
+
+        CheckImportValues checkImportValues = new CheckImportValues(filePath, projectName, row.getRowNum() + 1);
+
+        if (recordIsNotEmpty)
+        {
+            if (haveDate)
+            {
+                checkImportValues.isCorrectDate(row, 0);
+            }
+
+            if (haveDuration)
+            {
+                checkImportValues.isCorrectNumberValue(row.getCell(2));
+            }
+
+            if (haveDate && haveDescription && haveDuration)
+            {
+                addNewTask(project, employee, row);
+            }
+            else
+            {
+                checkImportValues.printErrorMessage(haveDate, haveDescription, haveDuration);
+            }
+        }
     }
 
     private void addNewTask(Project project, Employee employee, Row row)
@@ -110,9 +125,9 @@ public class DataImporter
             return false;
     }
 
-    private Employee getEmployee(Project project, String employeeName)
+    private Employee getEmployee(String employeeName)
     {
-        for (Employee employee : project.getEmployees())
+        for (Employee employee : employees)
         {
             if (employee.getName().equals(employeeName))
             {
@@ -122,7 +137,7 @@ public class DataImporter
 
         Employee employee = new Employee();
         employee.setName(employeeName);
-        project.employees.add(employee);
+        employees.add(employee);
         return employee;
     }
 
