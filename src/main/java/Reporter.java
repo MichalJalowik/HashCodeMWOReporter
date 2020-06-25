@@ -20,7 +20,7 @@ public class Reporter {
         Set<Project> allProjects = importer.importDataFromFiles(path);
         Set<Project> projects = Set.copyOf(allProjects);
         Menu menu1 = new Menu("FILTROWANIE DANYCH", new String[] { "Użyj wszystkich zaimportowanych danych / resetuj filtry",
-                "Filtrowanie po nazwisku", "Filtrowanie po datach" });
+                "Filtrowanie po nazwisku", "Filtrowanie po datach", "Filtrowanie po zadaniu" });
 
         Menu menu2 = new Menu("WYBÓR RAPORTU",
                 new String[] { "Raport godzin przepracowanych przez poszczególnych pracowników",
@@ -53,6 +53,11 @@ public class Reporter {
                 String userDateTo = scan.nextLine();
                 projects = filter.filterByDate(projects, userDateFrom, userDateTo);
                 break;
+            case 4:
+            	 System.out.println("Podaj fragment, który ma się zawierać w nazwie zadania");
+                 String taskName = scan.nextLine();
+                 projects = filter.filterByTaskName(projects, taskName);
+                 break;
             }
 
             if (selection1 != 0) {
