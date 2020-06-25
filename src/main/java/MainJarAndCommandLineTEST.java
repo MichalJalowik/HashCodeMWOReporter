@@ -81,9 +81,9 @@ public class MainJarAndCommandLineTEST {
         DataRaportPrinter printer;
         if(line.hasOption("console")) {
             //System.out.println("running......on console below");
-            printer = new ConsoleDataRaportPrinter();
+            printer = new ConsoleDataRaportPrinter(raport);
             try {
-                printer.printRaport(raport);
+                printer.printRaport();
             } catch (IOException e)
             {
                 e.printStackTrace();
@@ -91,9 +91,9 @@ public class MainJarAndCommandLineTEST {
         }
         if(line.hasOption("CSV")) {
             //System.out.println("saving......as CSV into project directory");
-            printer = new CSVDataRaportPrinter();
+            printer = new CSVDataRaportPrinter(raport);
             try {
-                printer.printRaport(raport);
+                printer.printRaport();
             } catch (IOException e)
             {
                 e.printStackTrace();
@@ -101,9 +101,9 @@ public class MainJarAndCommandLineTEST {
         }
         if(line.hasOption("XLS")) {
             //System.out.println("saving......as XLS into project directory");
-            printer = new ExcelDataRaportPrinter();
+            printer = new ExcelDataRaportPrinter(raport);
             try {
-                printer.printRaport(raport);
+                printer.printRaport();
             } catch (IOException e)
             {
                 e.printStackTrace();
@@ -111,9 +111,9 @@ public class MainJarAndCommandLineTEST {
         }
         if(line.hasOption("PDF")) {
             //System.out.println("saving......as PDF into project directory");
-            printer = new PDFDataRaportPrinter();
+            printer = new PDFDataRaportPrinter(raport);
             try {
-                printer.printRaport(raport);
+                printer.printRaport();
             } catch (IOException e)
             {
                 e.printStackTrace();

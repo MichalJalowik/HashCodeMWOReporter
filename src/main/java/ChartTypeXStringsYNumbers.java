@@ -53,7 +53,6 @@ public class ChartTypeXStringsYNumbers implements ChartType {
         for (String[] row : givenData) {
             for (String cell : row) {
                 if (isNumeric(cell)) {
-//                    numbers.add(Integer.parseInt(cell));
                     numbers.add(Double.parseDouble(cell));
                 }
             }
@@ -67,7 +66,7 @@ public class ChartTypeXStringsYNumbers implements ChartType {
         CategoryChart chart = new CategoryChartBuilder().width(1300).height(750).title(chartTitle).xAxisTitle(chartStringsAxisTitle)
                 .yAxisTitle(chartNumbersAxisTitle).build();
 
-        chart.getStyler().setPlotGridVerticalLinesVisible(false);
+        chart.getStyler().setPlotGridVerticalLinesVisible(false).getXAxisLabelRotation();
 
         chart.addSeries("Przepracowane\ngodziny", axisOfStrings, axisOfNumbers);
 

@@ -1,12 +1,17 @@
 
-public class ConsoleDataRaportPrinter implements DataRaportPrinter {
+public class ConsoleDataRaportPrinter extends DataRaportPrinter {
+
+    public ConsoleDataRaportPrinter(Raport raport) {
+        super(raport);
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
-    public void printRaport(Raport raport) {
+    public void printRaport() {
         
-        System.out.println("Raport: " + raport.getName());
-        System.out.println("Dane za okres: " + raport.getMinDate() + " - " + raport.getMaxDate());
-        for (String[] record : raport.getRaport()) {
+        System.out.println("Raport: " + this.getRaportName());
+        System.out.println("Dane za okres: " + this.getTimeRange());
+        for (String[] record : this.getRaportObject().getRaport()) {
             for (String value : record) {
                 String line = String.format("%-25s", value);
                 System.out.print(line);
