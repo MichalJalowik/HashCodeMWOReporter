@@ -10,6 +10,7 @@ public class Reporter {
         DataImporter importer = new DataImporter();
         Raport raport = null;
         DataRaportPrinter printer = null;
+        DataRaportPrinter printer1 = null;
         Filter filter = new Filter();
 
         System.out.println("WITAJ W SYSTEMIE DO RAPORTOWANIA PRACY\n");
@@ -27,7 +28,7 @@ public class Reporter {
                         "Raport TOP10 najbardziej czasochłonnych zadań" });
 
         Menu menu3 = new Menu("WYBÓR PREZENTACJI RAPORTU", new String[] { "Wyświetlenie na konsoli",
-                "Eksport do pliku CSV", "Eksport do pliku XLSX", "Eksport do pliku PDF", "Stworz wykres" });
+                "Eksport do pliku CSV", "Eksport do pliku XLSX", "Eksport do pliku PDF", "Stworz wykres", "Stworz PDF z wykresem" });
 
         int selection1 = -1;
         int selection2 = -1;
@@ -94,14 +95,25 @@ public class Reporter {
                             case 5:
                                 printer = new ChartDataRaportPrinter(raport);
                                 break;
+                            case 6:
+								printer1 = new ChartDataRaportPrinter(raport);
+								printer = new PDFDataRaportPrinter(raport);
+								break;
                             }
-
-                            if (selection3 != 0) {
-                                try {
-                                    printer.printRaport();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                            
+                            if (selection3 != 0 && selection3 != 6) {
+								try {
+									printer.printRaport();
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							} else if (selection3 != 0 && selection3 == 6) {
+								try {
+									printer1.printRaport();
+									printer.printRaport();
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
                             }
                         }
                     }
