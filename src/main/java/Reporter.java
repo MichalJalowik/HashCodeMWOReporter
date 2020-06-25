@@ -18,7 +18,7 @@ public class Reporter {
         String path = scan.nextLine();
         Set<Project> allProjects = importer.importDataFromFiles(path);
         Set<Project> projects = Set.copyOf(allProjects);
-        Menu menu1 = new Menu("FILTROWANIE DANYCH", new String[] { "Użyj wszystkich zaimportowanych danych",
+        Menu menu1 = new Menu("FILTROWANIE DANYCH", new String[] { "Użyj wszystkich zaimportowanych danych / resetuj filtry",
                 "Filtrowanie po nazwisku", "Filtrowanie po datach" });
 
         Menu menu2 = new Menu("WYBÓR RAPORTU",
