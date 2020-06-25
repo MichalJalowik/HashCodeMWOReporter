@@ -20,6 +20,10 @@ public class ChartDataRaportPrinter extends DataRaportPrinter {
             chartType = new ChartTypeXStringsYNumbers();
             chartType.printChart(this.getRaportObject());
         }
+        else if (raportType.equals("Raport4")) {
+            chartType = new ChartTypeXStringsYNumbersZStrings();
+            chartType.printChart(this.getRaportObject());
+        }
         else {
             System.out.println("Wykres dla " + raportType + " jest aktualnie nieobslugiwany. Pracujemy nad tym.");
         }
