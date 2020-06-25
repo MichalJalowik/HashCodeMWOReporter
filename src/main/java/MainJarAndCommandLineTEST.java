@@ -167,9 +167,9 @@ public class MainJarAndCommandLineTEST {
         }
         if(line.hasOption("chart")) {
             //System.out.println("saving......as PDF into project directory");
-            printer = new ChartDataRaportPrinter();
+            printer = new ChartDataRaportPrinter(raport);
             try {
-                printer.printRaport(raport);
+                printer.printRaport();
             } catch (IOException e)
             {
                 e.printStackTrace();
