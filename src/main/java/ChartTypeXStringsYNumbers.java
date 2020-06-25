@@ -67,7 +67,7 @@ public class ChartTypeXStringsYNumbers implements ChartType {
                 .yAxisTitle(chartNumbersAxisTitle).build();
 
         chart.getStyler().setPlotGridVerticalLinesVisible(false);
-        chart.getStyler().setXAxisLabelRotation(90);
+        chart.getStyler().setXAxisLabelRotation(65);
         chart.getStyler().setLegendVisible(false);
 
         chart.addSeries("Przepracowane\ngodziny", axisOfStrings, axisOfNumbers);
