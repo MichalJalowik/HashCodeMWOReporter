@@ -32,6 +32,7 @@ public class PDFDataRaportPrinter extends DataRaportPrinter {
 	public void printRaport() throws IOException {
 		String raportDate = LocalDate.now().toString();
 		String raportType = this.getRaportObject().getClass().getName();
+		
 		String fileName = raportType + "_" + raportDate + ".pdf";
 
 		Document document = new Document();
@@ -71,6 +72,7 @@ public class PDFDataRaportPrinter extends DataRaportPrinter {
 			File[] filesList = curDir.listFiles();
 			for (File f : filesList) {
 				if (f.getName().equals(imgName)) {
+					
 					int indentation = 0;
 					Image image = Image.getInstance(imgName);
 					float scaler = ((document.getPageSize().getWidth() - document.leftMargin() - document.rightMargin()
@@ -80,13 +82,17 @@ public class PDFDataRaportPrinter extends DataRaportPrinter {
 					document.add(image);
 					Path p = Paths.get(imgName);
 					Files.deleteIfExists(p);
+					document.close();			
+					File file = new File(fileName);
+					File file2 = new File(raportType + "_" + raportDate + " - wykres.pdf");
+					file.renameTo(file2);
 				}
 
 			}
-			document.close();
-
+			document.close();			
 			System.out.println("Raport zapisany do pliku " + fileName);
-
+			
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (DocumentException e) {
