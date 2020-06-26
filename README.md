@@ -50,7 +50,7 @@ $ java -jar HashCodeMWOReporter.jar -path "C:\Users\micha\Desktop\Java programmi
 kolejnosc wpisywania funkcji nie jest wazna. W razie pomocy zaesze moana uzyc funkcji -help gdzie sa podane wszystkie informacje i funkcjonalnosci
 
 6. Generowanie pliku JAR.
-w wierszu polecen z poziomu gluwnego katalogu programu wpisujemy:
+w wierszu polecen z poziomu glownego katalogu programu wpisujemy:
 $ mvn clean install
 
 W folderze \target pojawi sie plik o nazwie wygenerowanej z pliku pom.xml projektu. Od tej pory mozemy zmieniac jego nazwe recznie i korzystac w funkcjonalnej wersji JAR.  
