@@ -3,7 +3,6 @@ public class ConsoleDataRaportPrinter extends DataRaportPrinter {
 
     public ConsoleDataRaportPrinter(Raport raport) {
         super(raport);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -38,6 +37,4 @@ public class ConsoleDataRaportPrinter extends DataRaportPrinter {
             System.out.println();
         }
     }
-
 }
-

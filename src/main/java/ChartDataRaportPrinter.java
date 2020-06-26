@@ -6,9 +6,7 @@ public class ChartDataRaportPrinter extends DataRaportPrinter {
 
     public ChartDataRaportPrinter(Raport raport) {
         super(raport);
-        // TODO Auto-generated constructor stub
     }
-
         
     @Override
     public void printRaport() throws IOException {
@@ -18,6 +16,10 @@ public class ChartDataRaportPrinter extends DataRaportPrinter {
         }
         else if (raportType.equals("Raport1") || raportType.equals("Raport2")) {
             chartType = new ChartTypeXStringsYNumbers();
+            chartType.printChart(this.getRaportObject());
+        }
+        else if (raportType.equals("Raport3")) {
+            chartType = new ChartTypeXStringsYManyNumbersZStrings();
             chartType.printChart(this.getRaportObject());
         }
         else if (raportType.equals("Raport4")) {

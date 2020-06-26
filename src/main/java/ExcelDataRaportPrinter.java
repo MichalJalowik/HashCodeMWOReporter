@@ -11,7 +11,6 @@ public class ExcelDataRaportPrinter extends DataRaportPrinter {
 
     public ExcelDataRaportPrinter(Raport raport) {
         super(raport);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -71,5 +70,4 @@ public class ExcelDataRaportPrinter extends DataRaportPrinter {
             return false;
         }
     }
-
 }
