@@ -47,7 +47,7 @@ $ java -jar HashCodeMWOReporter.jar -path "C:\Users\micha\Desktop\Java programmi
 5. dla przykladu jesli chcemy z powyzszej bazy danych wyswietlic raport 1, 2, 3, 4 na konsoli jako plik CSV, tabeli w PDF, wykres w PDF dodatkowo przefiltrowany wg dat wpisujemy:
 $ java -jar HashCodeMWOReporter.jar -path "C:\Users\micha\Desktop\Java programming\HashCodeMWOReporter\src\main\resources\valid\2018" -report1 -report2 -console -CSV -chartPDF -PDF -filterDATE 01.02.2018_01.04.2018 -report3 -report4
 
-kolejnosc wpisywania funkcji nie jest wazna. W razie pomocy zaesze moana uzyc funkcji -help gdzie sa podane wszystkie informacje i funkcjonalnosci
+Pliki CSV, PDF, JPG pojawia sie w glownym katalogu projektu. Kolejnosc wpisywania funkcji nie jest wazna. W razie pomocy zaesze moana uzyc funkcji -help gdzie sa podane wszystkie informacje i funkcjonalnosci
 
 6. Generowanie pliku JAR.
 w wierszu polecen z poziomu glownego katalogu programu wpisujemy:
