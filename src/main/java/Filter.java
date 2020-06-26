@@ -9,7 +9,7 @@ public class Filter
 {
     public Set<Project> filterByEmployeeName(Set<Project> projects, String employeeName){
 
-        Predicate<Employee> nameContainsPattern = employee -> employee.getName().contains(employeeName);
+        Predicate<Employee> nameContainsPattern = employee -> employee.getName().toLowerCase().contains(employeeName.toLowerCase());
         boolean employeeNameIsNotEmpty = !employeeName.equals("");
 
         if(employeeNameIsNotEmpty){
@@ -34,7 +34,7 @@ public class Filter
 
     public Set<Project> filterByTaskName(Set<Project> projects, String taskName){
 
-        Predicate<Task> nameContainsPattern = task -> task.getDescription().contains(taskName);
+        Predicate<Task> nameContainsPattern = task -> task.getDescription().toLowerCase().contains(taskName.toLowerCase());
         boolean isTaskNameNotEmpty = !taskName.equals("");
 
         if(isTaskNameNotEmpty){
