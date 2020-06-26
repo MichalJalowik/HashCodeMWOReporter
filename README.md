@@ -5,7 +5,7 @@ opis wymagań: https://docs.google.com/document/d/1MElr1D3eZve1uQ6V7IYn2igUwUQ20
 
 diagram klas UML: https://github.com/MichalJalowik/HashCodeMWOReporter/blob/master/UML_Reporter.jpg
 
-INSTRUKCJA OBSLUGI Z WIERSZA POLECEN:
+#### INSTRUKCJA OBSLUGI Z WIERSZA POLECEN: ####
 1. Aby uruchomić program należy z katalogu w którym znajduje się plik HashCodeMWOReporter.jar wpisać komende w wierszu poleceń:
 $ java -jar HashCodeMWOReporter.jar
 
@@ -48,3 +48,10 @@ $ java -jar HashCodeMWOReporter.jar -path "C:\Users\micha\Desktop\Java programmi
 $ java -jar HashCodeMWOReporter.jar -path "C:\Users\micha\Desktop\Java programming\HashCodeMWOReporter\src\main\resources\valid\2018" -report1 -report2 -console -CSV -chartPDF -PDF filterDATE 01.02.2018_01.04.2018 -report3 -report4
 
 kolejnosc wpisywania funkcji nie jest wazna. W razie pomocy zaesze moana uzyc funkcji -help gdzie sa podane wszystkie informacje i funkcjonalnosci
+
+6. Generowanie pliku JAR.
+w wierszu polecen z poziomu gluwnego katalogu programu wpisujemy:
+$ mvn clean install
+
+W folderze \target pojawi sie plik o nazwie wygenerowanej z pliku pom.xml projektu. Od tej pory mozemy zmieniac jego nazwe recznie i korzystac w funkcjonalnej wersji JAR.  
+
