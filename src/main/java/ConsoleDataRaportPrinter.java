@@ -10,7 +10,7 @@ public class ConsoleDataRaportPrinter extends DataRaportPrinter {
         
         String[][] raportData = this.getRaportObject().getRaport();
         
-        System.out.println("Raport: " + this.getRaportName());
+        System.out.println(this.getRaportName());
         System.out.println("Dane za okres: " + this.getTimeRange());
         
         int longestString = 0;

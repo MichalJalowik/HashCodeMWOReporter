@@ -19,7 +19,7 @@ public class CSVDataRaportPrinter extends DataRaportPrinter {
         try (PrintWriter csvFileWriter = new PrintWriter(new File(fileName))) {
             StringBuilder raportToPrintInStringFormat = new StringBuilder();
 
-            String raportName = "Raport: " + this.getRaportName();
+            String raportName = this.getRaportName();
             String periodOfData = "Dane za okres: " + this.getTimeRange();
             raportToPrintInStringFormat.append(raportName);
             raportToPrintInStringFormat.append("\n");
