@@ -7,7 +7,6 @@ public class CSVDataRaportPrinter extends DataRaportPrinter {
 
     public CSVDataRaportPrinter(Raport raport) {
         super(raport);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

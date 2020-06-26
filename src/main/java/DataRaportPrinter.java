@@ -41,5 +41,4 @@ public abstract class DataRaportPrinter {
     public String getTimeRange() {
         return timeRange;
     };
-
 }

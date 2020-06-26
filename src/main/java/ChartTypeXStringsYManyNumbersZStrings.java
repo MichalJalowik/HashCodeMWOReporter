@@ -1,19 +1,21 @@
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
 import org.knowm.xchart.BitmapEncoder.BitmapFormat;
 
-public class ChartTypeXStringsYNumbersZStrings implements ChartType {
+public class ChartTypeXStringsYManyNumbersZStrings implements ChartType {
 
     String chartTitle;
     String chartStringsAxisTitle;
     String chartNumbersAxisTitle;
     String[][] givenData;
+    ArrayList<String> projectsFromData;
+    ArrayList<String> namesFromData;
+    ArrayList<ArrayList<Number>> numbersFromData;
 
     @Override
     public void printChart(Raport raport) {
@@ -21,7 +23,8 @@ public class ChartTypeXStringsYNumbersZStrings implements ChartType {
         this.chartTitle = raport.getName();
         this.givenData = raport.getRaport();
         this.chartStringsAxisTitle = givenData[0][0];
-        this.chartNumbersAxisTitle = givenData[0][2];
+        this.chartNumbersAxisTitle = givenData[0][givenData[0].length - 1];
+        dataParser();
 
         try {
             String raportDate = LocalDate.now().toString();
@@ -36,6 +39,27 @@ public class ChartTypeXStringsYNumbersZStrings implements ChartType {
         }
     }
 
+    public void dataParser() {
+        projectsFromData = new ArrayList<>();
+        namesFromData = new ArrayList<>();
+        numbersFromData = new ArrayList<>();
+
+        for (int i = 1; i < givenData[0].length - 1; i++) {
+            String projectName = givenData[0][i].substring(givenData[0][i].lastIndexOf(" ") + 1);
+            projectsFromData.add(projectName);
+        }
+        for (int i = 1; i < givenData.length; i++) {
+            namesFromData.add(givenData[i][0]);
+        }
+        for (int i = 1; i < givenData[0].length - 1; i++) {
+            ArrayList<Number> houresInProject = new ArrayList<>();
+            for (int j = 1; j < givenData.length; j++) {
+                houresInProject.add(Double.parseDouble(givenData[j][i]));
+            }
+            numbersFromData.add(houresInProject);
+        }
+    }
+
     @Override
     public CategoryChart getChart() {
 
@@ -43,12 +67,11 @@ public class ChartTypeXStringsYNumbersZStrings implements ChartType {
                 .xAxisTitle(chartStringsAxisTitle).yAxisTitle(chartNumbersAxisTitle).build();
 
         chart.getStyler().setPlotGridVerticalLinesVisible(false);
+        chart.getStyler().setStacked(true);
+        chart.getStyler().setXAxisLabelRotation(65);
 
-        for (int i = 1; i < givenData.length; i++) {
-            String taskName = givenData[i][0] + " (" + givenData[i][1] + ")";
-            Number taskHoures = Double.parseDouble(givenData[i][2]);
-            chart.addSeries(taskName, new ArrayList<String>(Arrays.asList(new String[] { " " })),
-                    new ArrayList<Number>(Arrays.asList(new Number[] { taskHoures })));
+        for (int i = 0; i < projectsFromData.size(); i++) {
+            chart.addSeries(projectsFromData.get(i), namesFromData, numbersFromData.get(i));
         }
         return chart;
     }

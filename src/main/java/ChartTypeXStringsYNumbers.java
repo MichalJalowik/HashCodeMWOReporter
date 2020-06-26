@@ -6,7 +6,6 @@ import org.knowm.xchart.BitmapEncoder;
 import org.knowm.xchart.BitmapEncoder.BitmapFormat;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.CategoryChartBuilder;
-//import org.knowm.xchart.SwingWrapper;
 
 public class ChartTypeXStringsYNumbers implements ChartType {
 
@@ -18,18 +17,16 @@ public class ChartTypeXStringsYNumbers implements ChartType {
 
     @Override
     public void printChart(Raport raport) {
-     
+
         this.chartTitle = raport.getName();
         this.axisOfStrings = parseRaportDataToXAxis(raport.getRaport());
         this.axisOfNumbers = parseRaportDataToYAxis(raport.getRaport());
-        CategoryChart chart = this.getChart();
-//        new SwingWrapper<CategoryChart>(chart).displayChart();
-        
+
         try {
             String raportDate = LocalDate.now().toString();
             String raportType = raport.getClass().getName();
             String fileName = raportType + "_" + raportDate + "_chart";
-            
+
             BitmapEncoder.saveBitmap(getChart(), fileName, BitmapFormat.JPG);
             System.out.println("Wykres zapisany do pliku: " + fileName + ".jpg");
         } catch (IOException e) {
@@ -63,8 +60,8 @@ public class ChartTypeXStringsYNumbers implements ChartType {
     @Override
     public CategoryChart getChart() {
 
-        CategoryChart chart = new CategoryChartBuilder().width(1300).height(750).title(chartTitle).xAxisTitle(chartStringsAxisTitle)
-                .yAxisTitle(chartNumbersAxisTitle).build();
+        CategoryChart chart = new CategoryChartBuilder().width(1300).height(750).title(chartTitle)
+                .xAxisTitle(chartStringsAxisTitle).yAxisTitle(chartNumbersAxisTitle).build();
 
         chart.getStyler().setPlotGridVerticalLinesVisible(false);
         chart.getStyler().setXAxisLabelRotation(65);
@@ -77,7 +74,6 @@ public class ChartTypeXStringsYNumbers implements ChartType {
 
     @Override
     public String getExampleChartName() {
-
         return getClass().getSimpleName() + " - Stacked Bar Chart";
     }
 
@@ -92,5 +88,4 @@ public class ChartTypeXStringsYNumbers implements ChartType {
         }
         return true;
     }
-
 }
