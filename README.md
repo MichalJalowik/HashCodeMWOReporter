@@ -5,6 +5,10 @@ opis wymagań: https://docs.google.com/document/d/1MElr1D3eZve1uQ6V7IYn2igUwUQ20
 
 diagram klas UML: https://github.com/MichalJalowik/HashCodeMWOReporter/blob/master/UML_Reporter.jpg
 
+instrukcja obsługi programu: https://github.com/MichalJalowik/HashCodeMWOReporter/blob/master/HashCodeMWOReporter_manual.pdf
+
+
+
 #### INSTRUKCJA OBSLUGI Z WIERSZA POLECEN: ####
 1. Aby uruchomić program należy z katalogu w którym znajduje się plik HashCodeMWOReporter.jar wpisać komende w wierszu poleceń:
 $ java -jar HashCodeMWOReporter.jar
