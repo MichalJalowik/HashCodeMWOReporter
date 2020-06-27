@@ -14,22 +14,50 @@ public class Filter
 
         if(employeeNameIsNotEmpty){
 
-            Set<Project> result = projects
-                    .stream()
-                    .filter(project -> {
-                        return project.getEmployees()
-                                .stream()
-                                .anyMatch(nameContainsPattern);
-                    })
-                    .collect(Collectors.toSet());
+//            Set<Project> result = projects
+//                    .stream()
+//                    .filter(project -> {
+//                        return project.getEmployees()
+//                                .stream()
+//                                .anyMatch(nameContainsPattern);
+//                    })
+//                    .collect(Collectors.toSet());
+//
+//            result.stream()
+//                    .forEach(project -> project.getEmployees().removeIf(nameContainsPattern.negate()));
+//
+//            return result;
 
-            result.stream()
-                    .forEach(project -> project.getEmployees().removeIf(nameContainsPattern.negate()));
-
-            return result;
+            return copyProjects(projects, employeeName);
         }
 
         return projects;
+    }
+
+    private Set<Project> copyProjects(Set<Project> projects, String employeeName){
+
+        Set<Project> result = new HashSet<>();
+
+        for(Project project : projects){
+            if(project.getEmployees().stream().anyMatch(employee -> employee.getName().toLowerCase().contains(employeeName.toLowerCase()))){
+                Project newProject = new Project();
+                newProject.setName(project.getName());
+
+                Set<Employee> selectedEmployee = project.getEmployees().stream().filter(employee -> employee.getName().toLowerCase()
+                        .contains(employeeName.toLowerCase())).collect(Collectors.toSet());
+
+                newProject.setEmployees(selectedEmployee);
+
+                for(Employee employee : selectedEmployee){
+                    for(Task task : employee.getTasks()){
+                        newProject.addTask(task);
+                    }
+                }
+                result.add(newProject);
+            }
+        }
+
+        return result;
     }
 
     public Set<Project> filterByTaskName(Set<Project> projects, String taskName){
