@@ -8,57 +8,69 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
    <top>
-      <AnchorPane prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="530.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="importPathField" layoutX="50.0" layoutY="48.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <Button id="importButton" layoutX="458.0" layoutY="88.0" mnemonicParsing="false" onMouseClicked="#importData" text="Importuj dane" />
-            <CheckBox fx:id="raport1checkbox" layoutX="51.0" layoutY="120.0" mnemonicParsing="false" text="Raport 1">
+            <CheckBox fx:id="raport1checkbox" layoutX="52.0" layoutY="143.0" mnemonicParsing="false" text="Raport 1: ilość godzin dla poszczególnych pracowników.">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <CheckBox fx:id="raport2checkbox" layoutX="51.0" layoutY="147.0" mnemonicParsing="false" text="Raport 2">
+            <CheckBox fx:id="raport2checkbox" layoutX="52.0" layoutY="170.0" mnemonicParsing="false" text="Raport 2: ilość godzin dla poszczególnych projektów.">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <CheckBox fx:id="raport3checkbox" layoutX="51.0" layoutY="174.0" mnemonicParsing="false" text="Raport 3">
+            <CheckBox fx:id="raport3checkbox" layoutX="52.0" layoutY="197.0" mnemonicParsing="false" text="Raport 3: ilość godzn dla poszczególnych pracowników w poszczególnych projektach.">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <CheckBox fx:id="raport4checkbox" layoutX="51.0" layoutY="201.0" mnemonicParsing="false" text="Raport 4">
+            <CheckBox fx:id="raport4checkbox" layoutX="52.0" layoutY="224.0" mnemonicParsing="false" text="Raport 4: ilość godzin dla 10 najbardziej czasochłonnych zadań.">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <CheckBox fx:id="csvFileCheckbox" layoutX="143.0" layoutY="120.0" mnemonicParsing="false" text="*.csv">
+            <CheckBox fx:id="csvFileCheckbox" layoutX="52.0" layoutY="287.0" mnemonicParsing="false" text="*.csv">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <CheckBox layoutX="143.0" layoutY="147.0" mnemonicParsing="false" text="*.xlsx" fx:id="xlsxFileCheckbox">
+            <CheckBox layoutX="121.0" layoutY="287.0" mnemonicParsing="false" text="*.xlsx" fx:id="xlsxFileCheckbox">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <CheckBox fx:id="jpgFileCheckbox" layoutX="143.0" layoutY="174.0" mnemonicParsing="false" text="*.jpg">
+            <CheckBox fx:id="jpgFileCheckbox" layoutX="188.0" layoutY="287.0" mnemonicParsing="false" text="*.jpg">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <CheckBox fx:id="pdfFileCheckbox" layoutX="143.0" layoutY="201.0" mnemonicParsing="false" text="*.pdf">
+            <CheckBox fx:id="pdfFileCheckbox" layoutX="255.0" layoutY="287.0" mnemonicParsing="false" text="*.pdf">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </CheckBox>
-            <Button id="generateRaportButton" layoutX="50.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#generateRaports" text="Generuj raport" />
-            <Label layoutX="50.0" layoutY="25.0" text="Podaj ścieżkę do plików, dla których chcesz wygenerować raport:" />
-            <Label layoutX="50.0" layoutY="101.0" text="Zaznacz raporty, które chcesz wygenerować:" />
-            <TextArea fx:id="textMessageLabel" editable="false" layoutX="250.0" layoutY="150.0" prefHeight="110.0" prefWidth="300.0" />
+            <Button id="generateRaportButton" layoutX="456.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#generateRaports" text="Generuj raport" />
+            <Label layoutX="50.0" layoutY="25.0" text="Podaj ścieżkę do plików, dla których chcesz wygenerować raport:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="51.0" layoutY="124.0" text="Zaznacz raporty, które chcesz wygenerować:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextArea fx:id="textMessageLabel" editable="false" layoutX="50.0" layoutY="369.0" prefHeight="130.0" prefWidth="500.0" />
+            <Label layoutX="52.0" layoutY="270.0" text="Wybierz rozszerzenia plików dla generowanych raportów:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </top>
