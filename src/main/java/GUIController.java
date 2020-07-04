@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -14,6 +13,7 @@ public class GUIController {
     Raport raport;
     DataRaportPrinter printer;
     Set<Project> allProjects;
+    String message = "";
 
     @FXML
     TextField importPathField;
@@ -39,13 +39,22 @@ public class GUIController {
     @FXML
     public void importData() {
         String pathToData = importPathField.getText();
-        textMessageLabel.setText("Data imported from: " + pathToData);
+        message += "Zaimportowano dane: " + pathToData + "\n";
+        textMessageLabel.setText(message);
         allProjects = importer.importDataFromFiles(pathToData);
     }
 
     @FXML
     public void generateRaports() {
         Set<Raport> raports = new HashSet<>();
+        if (!raport1checkbox.isSelected() && !raport2checkbox.isSelected() && !raport3checkbox.isSelected() && !raport4checkbox.isSelected()) {
+            message += "Nie wybrano zadnego raportu\n";
+            textMessageLabel.setText(message);
+        }
+        if (!csvFileCheckbox.isSelected() && !xlsxFileCheckbox.isSelected() && !jpgFileCheckbox.isSelected() && !pdfFileCheckbox.isSelected()) {
+            message += "Nie wybrano zadnego rozszerzenia pliku dla raportu\n";
+            textMessageLabel.setText(message);
+        }
         if (raport1checkbox.isSelected()) {
             Raport raport1 = new Raport1();
             raports.add(raport1);
@@ -66,6 +75,8 @@ public class GUIController {
             for (Raport raport : raports) {
                 raport.generateRaport(allProjects);
                 printer = new CSVDataRaportPrinter(raport);
+                message += "Wygenerowano plik csv dla " + raport.getName() + "\n";
+                textMessageLabel.setText(message);
                 try {
                     printer.printRaport();
                 } catch (IOException e) {
@@ -78,6 +89,8 @@ public class GUIController {
             for (Raport raport : raports) {
                 raport.generateRaport(allProjects);
                 printer = new ExcelDataRaportPrinter(raport);
+                message += "Wygenerowano plik xlsx dla " + raport.getName() + "\n";
+                textMessageLabel.setText(message);
                 try {
                     printer.printRaport();
                 } catch (IOException e) {
@@ -90,6 +103,8 @@ public class GUIController {
             for (Raport raport : raports) {
                 raport.generateRaport(allProjects);
                 printer = new ChartDataRaportPrinter(raport);
+                message += "Wygenerowano plik jpg dla " + raport.getName() + "\n";
+                textMessageLabel.setText(message);
                 try {
                     printer.printRaport();
                 } catch (IOException e) {
@@ -102,6 +117,8 @@ public class GUIController {
             for (Raport raport : raports) {
                 raport.generateRaport(allProjects);
                 printer = new PDFDataRaportPrinter(raport);
+                message += "Wygenerowano plik pdf dla " + raport.getName() + "\n";
+                textMessageLabel.setText(message);
                 try {
                     printer.printRaport();
                 } catch (IOException e) {
